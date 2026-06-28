@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — The Gospel Story</title>
+<meta name="description" content="About the author and mission of The Gospel Story.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1A2744; --navy-light: #253560; --gold: #B8952A; --gold-light: #D4AE4E;
+  --parchment: #F7F0E2; --cream: #FDFAF4; --slate: #7A8BA0;
+  --text: #2C2C2C; --text-muted: #5A5A5A; --rule: #D9CEB5;
+  --font-display: 'Cinzel', Georgia, serif; --font-body: 'EB Garamond', Georgia, serif;
+  --max-w: 680px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--text); font-family: var(--font-body); font-size: 1.125rem; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.container { max-width: var(--max-w); margin-inline: auto; padding-inline: 1.5rem; }
+.section { padding-block: 4.5rem; }
+.eyebrow { font-family: var(--font-display); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+h2.section-title { font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 600; color: var(--navy); letter-spacing: 0.04em; line-height: 1.3; margin-bottom: 1rem; }
+.ornament { display: flex; align-items: center; gap: 1rem; margin-block: 0.5rem 2.5rem; }
+.ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.ornament span { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+.btn { display: inline-block; font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; transition: all 0.2s; border: none; }
+.btn-primary { background: var(--gold); color: var(--navy); font-weight: 700; }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-navy { background: var(--navy); color: #fff; }
+.btn-navy:hover { background: var(--navy-light); transform: translateY(-1px); }
+
+/* NAV */
+.site-nav { background: var(--navy); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.site-nav .container { max-width: 780px; display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; gap: 1rem; }
+.site-nav .brand { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links .nav-cta { color: var(--gold); }
+.nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.2rem; cursor: pointer; }
+
+/* PAGE HERO */
+.page-hero { background: var(--navy); background-image: radial-gradient(ellipse at 30% 60%, rgba(184,149,42,0.08) 0%, transparent 60%), linear-gradient(170deg, #1A2744 0%, #0F1A33 100%); padding-block: 4rem 3.5rem; text-align: center; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; line-height: 1.2; margin-bottom: 0.75rem; }
+.page-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); font-style: italic; max-width: 400px; margin-inline: auto; }
+
+/* MISSION SECTION */
+.mission-text p { margin-bottom: 1.25rem; color: var(--text); }
+.mission-text p:last-child { margin-bottom: 0; }
+.mission-text p.lead { font-size: 1.15rem; color: var(--navy); line-height: 1.9; }
+
+/* WHAT I BELIEVE */
+.belief-list { list-style: none; display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+.belief-list li { display: flex; gap: 1rem; align-items: baseline; }
+.belief-list li::before { content: '✦'; color: var(--gold); font-size: 0.65rem; flex-shrink: 0; margin-top: 0.35rem; }
+.belief-list li span { font-size: 1rem; color: var(--text-muted); font-style: italic; line-height: 1.75; }
+
+/* PARCHMENT SECTION */
+.parchment-section { background: var(--parchment); }
+
+/* SUPPORT SECTION */
+.support-section { background: var(--navy); background-image: radial-gradient(ellipse at 70% 50%, rgba(184,149,42,0.07) 0%, transparent 60%); text-align: center; padding-block: 4.5rem; }
+.support-section .eyebrow { color: var(--gold-light); }
+.support-section h2.section-title { color: #fff; margin-bottom: 1rem; }
+.support-section p { color: rgba(255,255,255,0.6); font-style: italic; max-width: 480px; margin-inline: auto; margin-bottom: 2rem; line-height: 1.9; }
+
+/* CONTACT */
+.contact-section { text-align: center; }
+.contact-section p { color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem; }
+.contact-email { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.1em; color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 0.1rem; transition: color 0.2s; }
+.contact-email:hover { color: var(--navy); }
+
+/* FOOTER */
+.site-footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding-block: 3rem; }
+.site-footer .container { max-width: 780px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 2rem; }
+.footer-brand .brand { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+.footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.35); font-style: italic; line-height: 1.7; }
+.footer-nav { display: flex; flex-direction: column; gap: 0.6rem; align-items: center; }
+.footer-nav a { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+.footer-nav a:hover { color: var(--gold-light); }
+.footer-legal { text-align: right; }
+.footer-legal nav { display: flex; gap: 1.25rem; justify-content: flex-end; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.footer-legal nav a { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+.footer-legal nav a:hover { color: var(--gold-light); }
+.footer-legal p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .nav-toggle { display: block; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy); flex-direction: column; gap: 0; padding: 1rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-links.open { display: flex; }
+  .nav-links li { padding-block: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .site-nav { position: relative; }
+  .site-footer .container { grid-template-columns: 1fr; }
+  .footer-legal { text-align: left; }
+  .footer-legal nav { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Site navigation">
+  <div class="container">
+    <a href="../" class="brand">The Gospel Story</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="../read/">Read</a></li>
+      <li><a href="../books/">Books</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../about/" class="active">About</a></li>
+      <li><a href="../subscribe/" class="nav-cta">Subscribe</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <span class="eyebrow">The Mission</span>
+    <h1>About</h1>
+    <p>Why The Gospel Story exists, and who is behind it.</p>
+  </div>
+</header>
+
+<!-- MISSION -->
+<section class="section">
+  <div class="container">
+    <div class="ornament"><span>✦</span></div>
+    <div class="mission-text reveal">
+      <p class="lead">
+        I write to help believers and seekers understand Scripture through the Gospel Story.
+      </p>
+      <p>
+        Rather than focusing on isolated passages or individual themes, my goal is to help readers see the Bible as one coherent revelation — a single, unbroken narrative that begins in Genesis, finds its center in Jesus Christ, and reaches its completion in Revelation.
+      </p>
+      <p>
+        Many people read Scripture faithfully for years without ever seeing the thread that runs through all of it. The sermons, studies, and books on this site exist to make that thread visible.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I BELIEVE -->
+<section class="section parchment-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Convictions</span>
+      <h2 class="section-title">What I Believe About Scripture</h2>
+      <ul class="belief-list">
+        <li><span>The Bible is one book, not a library of unrelated texts. Every part points toward Christ.</span></li>
+        <li><span>The Old Testament is not merely background — it is the first half of the story, without which the New Testament cannot be fully understood.</span></li>
+        <li><span>The Gospel is bigger than personal salvation. It is the announcement that God is restoring all things through His Son.</span></li>
+        <li><span>Scripture is best understood when read as its authors intended — as a continuous narrative with a coherent plot, real characters, and a definitive resolution.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="support-section">
+  <div class="container">
+    <span class="eyebrow">Support the Work</span>
+    <h2 class="section-title">If This Has Been Helpful</h2>
+    <p>
+      This ministry is offered freely — the sermons, studies, and resources are available to anyone who seeks them. If the Gospel Story has helped you understand Scripture, you are welcome to support the work so it can continue.
+    </p>
+    <!-- BUYMEACOFFEE-URL: replace YOUR_DONATION_URL with your PayPal or donation link -->
+    <a href="YOUR_DONATION_URL" target="_blank" rel="noopener" class="btn btn-primary">Support This Ministry</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Get in Touch</span>
+      <h2 class="section-title">Contact</h2>
+      <p>Questions, feedback, or requests for speaking or group study? I would be glad to hear from you.</p>
+      <!-- Replace with your real email address -->
+      <a href="mailto:hello@thegospelstory.com" class="contact-email">hello@thegospelstory.com</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <span class="brand">The Gospel Story</span>
+      <p>Helping believers and seekers<br>understand Scripture as one<br>unified story centered on Christ.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../read/">Read</a>
+      <a href="../books/">Books</a>
+      <a href="../resources/">Resources</a>
+      <a href="../about/">About</a>
+      <a href="../subscribe/">Subscribe</a>
+    </nav>
+    <div class="footer-legal">
+      <nav>
+        <a href="#">Amazon Author Page</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+      </nav>
+      <p>© 2026 The Gospel Story. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+  { threshold: 0.1 }
+);
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

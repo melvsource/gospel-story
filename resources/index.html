@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — The Gospel Story</title>
+<meta name="description" content="Free PDFs, study guides, and trusted Bible tools from The Gospel Story.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1A2744; --navy-light: #253560; --gold: #B8952A; --gold-light: #D4AE4E;
+  --parchment: #F7F0E2; --cream: #FDFAF4; --slate: #7A8BA0;
+  --text: #2C2C2C; --text-muted: #5A5A5A; --rule: #D9CEB5;
+  --font-display: 'Cinzel', Georgia, serif; --font-body: 'EB Garamond', Georgia, serif;
+  --max-w: 780px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--text); font-family: var(--font-body); font-size: 1.125rem; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.container { max-width: var(--max-w); margin-inline: auto; padding-inline: 1.5rem; }
+.section { padding-block: 4rem; }
+.eyebrow { font-family: var(--font-display); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
+h2.section-title { font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 600; color: var(--navy); letter-spacing: 0.04em; line-height: 1.3; margin-bottom: 0.4rem; }
+.section-sub { color: var(--text-muted); font-size: 1rem; font-style: italic; margin-bottom: 2rem; }
+.ornament { display: flex; align-items: center; gap: 1rem; margin-block: 2rem; }
+.ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.ornament span { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+.btn { display: inline-block; font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.7rem 1.5rem; border-radius: 2px; cursor: pointer; transition: all 0.2s; border: none; }
+.btn-primary { background: var(--gold); color: var(--navy); font-weight: 700; }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-navy { background: var(--navy); color: #fff; }
+.btn-navy:hover { background: var(--navy-light); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+.btn-ghost:hover { background: var(--gold); color: var(--navy); }
+
+/* NAV */
+.site-nav { background: var(--navy); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.site-nav .container { display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; gap: 1rem; }
+.site-nav .brand { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links .nav-cta { color: var(--gold); }
+.nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.2rem; cursor: pointer; }
+
+/* PAGE HERO */
+.page-hero { background: var(--navy); background-image: radial-gradient(ellipse at 30% 60%, rgba(184,149,42,0.08) 0%, transparent 60%), linear-gradient(170deg, #1A2744 0%, #0F1A33 100%); padding-block: 4rem 3.5rem; text-align: center; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; line-height: 1.2; margin-bottom: 0.75rem; }
+.page-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); font-style: italic; max-width: 440px; margin-inline: auto; }
+
+/* RESOURCE CARDS */
+.resource-group { margin-bottom: 1rem; }
+.resource-grid { display: flex; flex-direction: column; gap: 0; }
+.resource-item {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; padding-block: 1.5rem; border-bottom: 1px solid var(--rule);
+}
+.resource-item:last-child { border-bottom: none; }
+.resource-icon { font-size: 1.4rem; color: var(--gold); flex-shrink: 0; width: 2rem; text-align: center; }
+.resource-body { flex: 1; }
+.resource-body h3 { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; color: var(--navy); letter-spacing: 0.02em; line-height: 1.4; margin-bottom: 0.2rem; }
+.resource-body p { font-size: 0.88rem; color: var(--text-muted); font-style: italic; line-height: 1.55; }
+.resource-tag { font-family: var(--font-display); font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.25rem; display: block; }
+.resource-action { flex-shrink: 0; }
+.resource-action .btn { font-size: 0.56rem; padding: 0.55rem 1rem; }
+
+/* PARCHMENT SECTION */
+.parchment-section { background: var(--parchment); }
+
+/* EXTERNAL LINKS */
+.external-item { display: flex; align-items: baseline; justify-content: space-between; gap: 2rem; padding-block: 1.25rem; border-bottom: 1px solid var(--rule); }
+.external-item:last-child { border-bottom: none; }
+.external-body h3 { font-family: var(--font-display); font-size: 0.88rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem; }
+.external-body p { font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+.external-link { font-family: var(--font-display); font-size: 0.56rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); white-space: nowrap; flex-shrink: 0; transition: color 0.2s; }
+.external-link:hover { color: var(--navy); }
+
+/* FOOTER */
+.site-footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding-block: 3rem; }
+.site-footer .container { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 2rem; }
+.footer-brand .brand { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
+.footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.35); font-style: italic; line-height: 1.7; }
+.footer-nav { display: flex; flex-direction: column; gap: 0.6rem; align-items: center; }
+.footer-nav a { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+.footer-nav a:hover { color: var(--gold-light); }
+.footer-legal { text-align: right; }
+.footer-legal nav { display: flex; gap: 1.25rem; justify-content: flex-end; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.footer-legal nav a { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+.footer-legal nav a:hover { color: var(--gold-light); }
+.footer-legal p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 640px) {
+  .nav-toggle { display: block; }
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy); flex-direction: column; gap: 0; padding: 1rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-links.open { display: flex; }
+  .nav-links li { padding-block: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .site-nav { position: relative; }
+  .resource-item { flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+  .resource-action { align-self: flex-start; }
+  .external-item { flex-direction: column; gap: 0.4rem; }
+  .external-link { align-self: flex-start; }
+  .site-footer .container { grid-template-columns: 1fr; }
+  .footer-legal { text-align: left; }
+  .footer-legal nav { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Site navigation">
+  <div class="container">
+    <a href="../" class="brand">The Gospel Story</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">☰</button>
+    <ul class="nav-links">
+      <li><a href="../read/">Read</a></li>
+      <li><a href="../books/">Books</a></li>
+      <li><a href="../resources/" class="active">Resources</a></li>
+      <li><a href="../about/">About</a></li>
+      <li><a href="../subscribe/" class="nav-cta">Subscribe</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Tools for Study</span>
+    <h1>Resources</h1>
+    <p>Free PDFs, study guides, and trusted Bible tools to help you go deeper into the Gospel Story.</p>
+  </div>
+</header>
+
+<!-- FREE PDFS -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Free Downloads</span>
+      <h2 class="section-title">PDF Resources</h2>
+      <p class="section-sub">Receive these free by subscribing, or download directly below.</p>
+    </div>
+
+    <!--
+      ADD NEW PDFs HERE — copy one .resource-item and paste above the others.
+      Update: title, description, and href on the download button.
+      Store PDF files in: /assets/pdfs/filename.pdf
+    -->
+    <div class="resource-grid">
+      <div class="resource-item reveal">
+        <div class="resource-icon">📄</div>
+        <div class="resource-body">
+          <span class="resource-tag">Free PDF</span>
+          <h3>Five Gospel Misunderstandings Christians Commonly Have</h3>
+          <p>A concise guide to the most common ways the Gospel is misunderstood — and what Scripture actually says.</p>
+        </div>
+        <div class="resource-action">
+          <!-- KIT-FORM-ACTION: replace YOUR_KIT_FORM_ACTION_URL with your Kit form action URL -->
+          <a href="../subscribe/" class="btn btn-primary">Get Free PDF</a>
+        </div>
+      </div>
+
+      <!--
+        EXAMPLE of a direct download entry (once you have a PDF file):
+        <div class="resource-item reveal">
+          <div class="resource-icon">📄</div>
+          <div class="resource-body">
+            <span class="resource-tag">Free PDF</span>
+            <h3>Your PDF Title Here</h3>
+            <p>Brief description of what this PDF covers.</p>
+          </div>
+          <div class="resource-action">
+            <a href="../assets/pdfs/your-file.pdf" download class="btn btn-navy">Download</a>
+          </div>
+        </div>
+      -->
+    </div>
+  </div>
+</section>
+
+<div class="ornament container"><span>✦</span></div>
+
+<!-- STUDY GUIDES -->
+<section class="section parchment-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">For Personal & Group Use</span>
+      <h2 class="section-title">Study Guides</h2>
+      <p class="section-sub">Designed for individual reflection or group discussion.</p>
+    </div>
+
+    <!--
+      ADD NEW STUDY GUIDES HERE — copy one .resource-item and paste above the others.
+    -->
+    <div class="resource-grid">
+      <div class="resource-item reveal">
+        <div class="resource-icon">📖</div>
+        <div class="resource-body">
+          <span class="resource-tag">Study Guide</span>
+          <h3>The Gospel Story — Discussion Guide</h3>
+          <p>Eight sessions walking through the major movements of the Gospel Story from Genesis to Revelation. Suitable for small groups or personal study.</p>
+        </div>
+        <div class="resource-action">
+          <a href="../subscribe/" class="btn btn-navy">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament container"><span>✦</span></div>
+
+<!-- EXTERNAL LINKS -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Recommended Tools</span>
+      <h2 class="section-title">Bible Study References</h2>
+      <p class="section-sub">Trusted external resources for deeper Scripture study.</p>
+    </div>
+
+    <!--
+      ADD NEW LINKS HERE — copy one .external-item and paste above the others.
+    -->
+    <div class="resource-grid">
+      <div class="external-item reveal">
+        <div class="external-body">
+          <h3>Bible Gateway</h3>
+          <p>Multiple Bible translations side by side — useful for comparing readings across versions.</p>
+        </div>
+        <a href="https://www.biblegateway.com" target="_blank" rel="noopener" class="external-link">Visit →</a>
+      </div>
+      <div class="external-item reveal">
+        <div class="external-body">
+          <h3>Blue Letter Bible</h3>
+          <p>Original Hebrew and Greek word studies, concordance, and cross-references for serious study.</p>
+        </div>
+        <a href="https://www.blueletterbible.org" target="_blank" rel="noopener" class="external-link">Visit →</a>
+      </div>
+      <div class="external-item reveal">
+        <div class="external-body">
+          <h3>Bible Project</h3>
+          <p>Visual overviews of every Bible book and major theological themes — excellent for understanding the big picture.</p>
+        </div>
+        <a href="https://bibleproject.com" target="_blank" rel="noopener" class="external-link">Visit →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <span class="brand">The Gospel Story</span>
+      <p>Helping believers and seekers<br>understand Scripture as one<br>unified story centered on Christ.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="../read/">Read</a>
+      <a href="../books/">Books</a>
+      <a href="../resources/">Resources</a>
+      <a href="../about/">About</a>
+      <a href="../subscribe/">Subscribe</a>
+    </nav>
+    <div class="footer-legal">
+      <nav>
+        <a href="#">Amazon Author Page</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy</a>
+      </nav>
+      <p>© 2026 The Gospel Story. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+  { threshold: 0.1 }
+);
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
