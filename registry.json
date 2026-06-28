@@ -1,0 +1,20 @@
+[
+  {
+    "type": "sermon",
+    "title": "Sample Sermon — The Lamb of God",
+    "scripture": "John 1:29–34",
+    "description": "Why John calls Jesus the Lamb, and what that means for the whole story of Scripture.",
+    "file": "sermons/the-lamb-of-god.html",
+    "date": "2026-06-27",
+    "series": null
+  },
+  {
+    "type": "study",
+    "title": "Gospel Foundations — Part 1",
+    "scripture": "Genesis 1:1",
+    "description": "Where the Gospel story actually begins — before the New Testament, before Israel, before everything.",
+    "file": "studies/gospel-foundations-01.html",
+    "date": "2026-06-20",
+    "series": "Gospel Foundations"
+  }
+]
