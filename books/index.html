@@ -73,6 +73,8 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
 .book-entry:last-child { border-bottom: none; }
 .book-cover { position: relative; }
 .book-cover img { width: 140px; height: 200px; object-fit: cover; border: 1px solid var(--rule); box-shadow: 6px 6px 0 var(--rule); }
+.book-thumb-link { display: block; transition: opacity 0.2s, transform 0.2s; }
+.book-thumb-link:hover { opacity: 0.85; transform: translateY(-2px); }
 .book-cover-placeholder {
   width: 140px;
   height: 200px;
@@ -174,8 +176,26 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
       <!-- BOOK 1 ─────────────────────────────────────────────────── -->
       <div class="book-entry reveal">
         <div class="book-cover">
-          <img src="https://s3.amazonaws.com/CAPS-SSE/content/66230320/DIGITAL_BOOK_THUMBNAIL?versionId=brH2t6Hobw2yY1OzNI23BpIYBW_DQcJB&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260629T084137Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAWBV6LQ4QA64RLHGJ%2F20260629%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9b2652d0d0e9d68ad55b4f8e4f16786d1c2a218bd03a3e75de576aea9e7f685f" alt="Better Understanding of the Gospel Story cover">
-          </div>
+          <!--
+            THUMBNAIL — three ways to add your cover image:
+
+            Option A: Self-hosted (recommended long-term)
+            <a href="YOUR_BOOK1_AMAZON_URL" target="_blank" rel="noopener">
+              <img src="../assets/images/book1-cover.jpg" alt="Better Understanding of the Gospel Story cover">
+            </a>
+
+            Option B: Hotlink from Amazon
+            Right-click your book cover on Amazon → Copy image address
+            <a href="YOUR_BOOK1_AMAZON_URL" target="_blank" rel="noopener">
+              <img src="https://m.media-amazon.com/images/I/XXXXX.jpg" alt="Better Understanding of the Gospel Story cover">
+            </a>
+
+            For now the placeholder is shown below. Replace the entire
+            <div class="book-cover-placeholder"> block with one of the
+            <a><img></a> examples above when your image is ready.
+          -->
+          <a href="https://s3.amazonaws.com/CAPS-SSE/content/66230320/DIGITAL_BOOK_THUMBNAIL?versionId=brH2t6Hobw2yY1OzNI23BpIYBW_DQcJB&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260629T084137Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAWBV6LQ4QA64RLHGJ%2F20260629%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9b2652d0d0e9d68ad55b4f8e4f16786d1c2a218bd03a3e75de576aea9e7f685f>
+          </a>
           <span class="book-badge">Available Now</span>
         </div>
         <div class="book-details">
@@ -194,8 +214,8 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
       <!-- BOOK 2 ─────────────────────────────────────────────────── -->
       <div class="book-entry reveal">
         <div class="book-cover">
-          <img src="https://s3.amazonaws.com/CAPS-SSE/content/65099834/DIGITAL_BOOK_THUMBNAIL?versionId=f_9vPvgDmwTjRhVuMtpRjhUaeEeGdqFb&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260629T084137Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAWBV6LQ4QA64RLHGJ%2F20260629%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=342702afbd07bf92d02226f4cb10553f7ba6c1687c2ff71cf19080fca92ff640" alt="Life Reflective of the Gospel Story cover">
-          </div>
+          <a href="https://s3.amazonaws.com/CAPS-SSE/content/65099834/DIGITAL_BOOK_THUMBNAIL?versionId=f_9vPvgDmwTjRhVuMtpRjhUaeEeGdqFb&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260629T084137Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAWBV6LQ4QA64RLHGJ%2F20260629%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=342702afbd07bf92d02226f4cb10553f7ba6c1687c2ff71cf19080fca92ff640" target="_blank" rel="noopener" class="book-thumb-link">
+          </a>
         </div>
         <div class="book-details">
           <h3>Life Reflective of the Gospel Story</h3>
@@ -210,8 +230,9 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
       </div>
 
       <!--
-        ADD NEW BOOK HERE — copy the block above and paste it above Book 1
-        Update: title, tagline, description, Amazon link, cover image
+        ADD NEW BOOK HERE — copy one book-entry block above,
+        paste it above Book 1, and update all content.
+        Replace YOUR_BOOKX_AMAZON_URL with the real Amazon link.
       -->
 
     </div>
@@ -245,7 +266,7 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
       <nav>
         <a href="#">Amazon Author Page</a>
         <a href="#">Contact</a>
-        <a href="#">Privacy</a>
+        <a href="../privacy/">Privacy</a>
       </nav>
       <p>© 2026 The Gospel Story. All rights reserved.</p>
     </div>
