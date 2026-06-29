@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Books — The Gospel Story</title>
-<meta name="description" content="Books by the author of The Gospel Story — written to help you understand Scripture as one unified narrative centered on Christ.">
+<title>The Gospel Story</title>
+<meta name="description" content="Helping believers and seekers understand Scripture as one unified story centered on Christ.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
+/* ─── TOKENS ─────────────────────────────────────────────────────── */
 :root {
   --navy:       #1A2744;
   --navy-light: #253560;
@@ -24,83 +25,115 @@
   --font-body:    'EB Garamond', Georgia, serif;
   --max-w: 780px;
 }
+
+/* ─── RESET ──────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { background: var(--cream); color: var(--text); font-family: var(--font-body); font-size: 1.125rem; line-height: 1.8; -webkit-font-smoothing: antialiased; }
-a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ─── LAYOUT ─────────────────────────────────────────────────────── */
 .container { max-width: var(--max-w); margin-inline: auto; padding-inline: 1.5rem; }
 .section { padding-block: 5rem; }
+
+/* ─── SHARED TYPOGRAPHY ──────────────────────────────────────────── */
 .eyebrow { font-family: var(--font-display); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; display: block; }
 h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 600; color: var(--navy); letter-spacing: 0.04em; line-height: 1.3; margin-bottom: 0.4rem; }
 .section-sub { color: var(--text-muted); font-size: 1rem; font-style: italic; margin-bottom: 2.5rem; }
 .ornament { display: flex; align-items: center; gap: 1rem; margin-block: 0.5rem 2rem; }
 .ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 .ornament span { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+
+/* ─── BUTTONS ────────────────────────────────────────────────────── */
 .btn { display: inline-block; font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.85rem 2rem; border-radius: 2px; cursor: pointer; transition: all 0.2s; border: none; }
 .btn-primary { background: var(--gold); color: var(--navy); font-weight: 700; }
-.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(184,149,42,0.35); }
+.btn-outline { background: transparent; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.25); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
 .btn-navy { background: var(--navy); color: #fff; }
 .btn-navy:hover { background: var(--navy-light); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+.btn-ghost:hover { background: var(--gold); color: var(--navy); }
 
-/* NAV */
+/* ─── NAV ────────────────────────────────────────────────────────── */
 .site-nav { background: var(--navy); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .site-nav .container { display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; gap: 1rem; }
 .site-nav .brand { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
 .nav-links { display: flex; list-style: none; gap: 2rem; }
 .nav-links a { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); transition: color 0.2s; }
-.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links a:hover { color: var(--gold-light); }
 .nav-links .nav-cta { color: var(--gold); }
-.nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.2rem; cursor: pointer; }
+.nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.2rem; cursor: pointer; padding: 0.25rem; }
 
-/* PAGE HERO */
-.page-hero { background: var(--navy); background-image: radial-gradient(ellipse at 30% 60%, rgba(184,149,42,0.08) 0%, transparent 60%), linear-gradient(170deg, #1A2744 0%, #0F1A33 100%); padding-block: 4rem 3.5rem; text-align: center; }
-.page-hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; line-height: 1.2; margin-bottom: 0.75rem; }
-.page-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); font-style: italic; max-width: 440px; margin-inline: auto; }
+/* ─── HERO ───────────────────────────────────────────────────────── */
+.hero { background: var(--navy); background-image: radial-gradient(ellipse at 30% 60%, rgba(184,149,42,0.08) 0%, transparent 60%), linear-gradient(170deg, #1A2744 0%, #0F1A33 100%); padding-block: 6rem 5rem; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: '✦'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 40rem; color: rgba(255,255,255,0.015); pointer-events: none; line-height: 1; }
+.hero-eyebrow { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; display: block; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; line-height: 1.15; margin-bottom: 0.5rem; }
+.hero h1 em { font-style: italic; font-family: var(--font-body); color: var(--gold-light); font-size: 0.75em; letter-spacing: 0.02em; display: block; margin-top: 0.25em; }
+.hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.6); font-style: italic; max-width: 480px; margin-inline: auto; line-height: 1.9; margin-bottom: 2.5rem; }
+.hero-cta-group { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 
-/* BOOK ENTRIES
-   To add a new book: copy one .book-entry block and update the content.
-   Place newest book at the top of #book-list.
-*/
-.book-entry {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 2.5rem;
-  padding-block: 3rem;
-  border-bottom: 1px solid var(--rule);
-  align-items: start;
-}
-.book-entry:last-child { border-bottom: none; }
-.book-cover { position: relative; }
-.book-cover img { width: 140px; height: 200px; object-fit: cover; border: 1px solid var(--rule); box-shadow: 6px 6px 0 var(--rule); }
-.book-thumb-link { display: block; transition: opacity 0.2s, transform 0.2s; }
+/* ─── PATH CARDS ─────────────────────────────────────────────────── */
+.paths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+.path-card { background: #fff; border: 1px solid var(--rule); border-top: 3px solid var(--gold); padding: 1.8rem 1.5rem; transition: box-shadow 0.22s, transform 0.22s; display: flex; flex-direction: column; }
+.path-card:hover { box-shadow: 0 8px 32px rgba(26,39,68,0.1); transform: translateY(-2px); }
+.path-card h3 { font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em; color: var(--navy); margin-bottom: 0.75rem; line-height: 1.4; }
+.path-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; font-style: italic; margin-bottom: 1.5rem; flex: 1; }
+.path-card .btn { font-size: 0.6rem; padding: 0.65rem 1.25rem; text-align: center; background: var(--navy); color: #fff; }
+.path-card .btn:hover { background: var(--gold); color: var(--navy); }
+
+/* ─── ARTICLES (parchment bg) ────────────────────────────────────── */
+.articles-section { background: var(--parchment); }
+.article-list { display: flex; flex-direction: column; }
+.article-item { display: flex; align-items: baseline; justify-content: space-between; gap: 2rem; padding-block: 1.6rem; border-bottom: 1px solid var(--rule); }
+.article-item:last-child { border-bottom: none; }
+.article-meta { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.3rem; display: block; }
+.article-content h3 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 600; color: var(--navy); letter-spacing: 0.02em; margin-bottom: 0.3rem; line-height: 1.4; }
+.article-content p { font-size: 0.88rem; color: var(--text-muted); font-style: italic; line-height: 1.6; }
+.article-link { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); white-space: nowrap; flex-shrink: 0; transition: color 0.2s; }
+.article-link:hover { color: var(--navy); }
+
+/* Loading / empty states */
+.loading-state { text-align: center; padding: 2rem; font-style: italic; color: var(--slate); }
+
+/* ─── BOOKS ──────────────────────────────────────────────────────── */
+.books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2.5rem; margin-top: 2.5rem; }
+.book-card { display: flex; gap: 1.5rem; align-items: flex-start; }
+.book-placeholder { width: 90px; height: 130px; background: linear-gradient(145deg, var(--navy) 0%, var(--navy-light) 100%); display: flex; align-items: center; justify-content: center; border: 1px solid var(--rule); box-shadow: 4px 4px 0 var(--rule); color: var(--gold); font-size: 1.8rem; flex-shrink: 0; }
+.book-img { width: 90px; height: 130px; object-fit: cover; border: 1px solid var(--rule); box-shadow: 4px 4px 0 var(--rule); flex-shrink: 0; }
+.book-thumb-link { display: block; flex-shrink: 0; transition: opacity 0.2s, transform 0.2s; }
 .book-thumb-link:hover { opacity: 0.85; transform: translateY(-2px); }
-.book-cover-placeholder {
-  width: 140px;
-  height: 200px;
-  background: linear-gradient(145deg, var(--navy) 0%, var(--navy-light) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--rule);
-  box-shadow: 6px 6px 0 var(--rule);
-  gap: 0.5rem;
-}
-.book-cover-placeholder span { color: var(--gold); font-size: 2.5rem; }
-.book-cover-placeholder p { font-family: var(--font-display); font-size: 0.5rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.3); text-transform: uppercase; text-align: center; padding-inline: 0.5rem; }
-.book-badge { position: absolute; top: -0.5rem; right: -0.75rem; background: var(--gold); color: var(--navy); font-family: var(--font-display); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.6rem; font-weight: 700; }
-.book-details h3 { font-family: var(--font-display); font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 600; color: var(--navy); letter-spacing: 0.03em; line-height: 1.35; margin-bottom: 0.5rem; }
-.book-details .book-tagline { font-style: italic; color: var(--slate); font-size: 0.95rem; margin-bottom: 1.25rem; }
-.book-details p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 1.5rem; }
-.book-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
-.book-actions .btn { font-size: 0.6rem; padding: 0.7rem 1.5rem; }
+.book-thumb-link img { width: 90px; height: 130px; object-fit: cover; border: 1px solid var(--rule); box-shadow: 4px 4px 0 var(--rule); }
+.book-info h3 { font-family: var(--font-display); font-size: 0.88rem; font-weight: 600; color: var(--navy); letter-spacing: 0.02em; line-height: 1.4; margin-bottom: 0.5rem; }
+.book-info p { font-size: 0.875rem; color: var(--text-muted); font-style: italic; line-height: 1.65; }
 
-/* SUPPORT BAND */
-.support-band { background: var(--parchment); padding-block: 3.5rem; text-align: center; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-.support-band p { font-style: italic; color: var(--text-muted); max-width: 480px; margin-inline: auto; margin-bottom: 1.5rem; font-size: 0.975rem; }
+/* ─── EMAIL SECTION ──────────────────────────────────────────────── */
+.email-section { background: var(--navy); background-image: radial-gradient(ellipse at 80% 50%, rgba(184,149,42,0.07) 0%, transparent 60%), linear-gradient(160deg, #1A2744 0%, #0F1A33 100%); text-align: center; }
+.email-section .eyebrow { color: var(--gold-light); }
+.email-section h2.section-title { color: #fff; }
+.email-section .section-sub { color: rgba(255,255,255,0.55); }
+.email-form { display: flex; gap: 0.75rem; max-width: 440px; margin-inline: auto; flex-wrap: wrap; justify-content: center; }
+.email-form input[type="email"] { flex: 1; min-width: 220px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-family: var(--font-body); font-size: 0.9rem; padding: 0.8rem 1.2rem; border-radius: 2px; outline: none; transition: border-color 0.2s; }
+.email-form input[type="email"]::placeholder { color: rgba(255,255,255,0.35); font-style: italic; }
+.email-form input[type="email"]:focus { border-color: var(--gold); }
 
-/* FOOTER */
+/* ─── SUPPORT ────────────────────────────────────────────────────── */
+.support-section { background: var(--parchment); text-align: center; }
+.support-section p { font-style: italic; color: var(--text-muted); max-width: 480px; margin-inline: auto; margin-bottom: 1.5rem; }
+
+/* ─── TESTIMONIALS ───────────────────────────────────────────────── */
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
+blockquote.testimonial { background: #fff; border: 1px solid var(--rule); padding: 2rem 1.75rem; position: relative; }
+blockquote.testimonial::before { content: '\201C'; font-family: var(--font-body); font-size: 5rem; color: var(--gold); opacity: 0.2; position: absolute; top: -0.5rem; left: 1rem; line-height: 1; }
+blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--text); line-height: 1.75; position: relative; z-index: 1; }
+
+/* ─── ABOUT ──────────────────────────────────────────────────────── */
+.about-section { text-align: center; }
+.about-section > .container > p { font-size: 1.05rem; color: var(--text-muted); font-style: italic; max-width: 560px; margin-inline: auto; line-height: 1.95; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────────── */
 .site-footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding-block: 3rem; }
 .site-footer .container { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 2rem; }
 .footer-brand .brand { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
@@ -114,140 +147,218 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
 .footer-legal nav a:hover { color: var(--gold-light); }
 .footer-legal p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
 
+/* ─── SCROLL REVEAL ──────────────────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 
+/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .nav-toggle { display: block; }
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy); flex-direction: column; gap: 0; padding: 1rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
   .nav-links.open { display: flex; }
   .nav-links li { padding-block: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .site-nav { position: relative; }
-  .book-entry { grid-template-columns: 1fr; }
-  .book-cover img, .book-cover-placeholder { width: 120px; height: 172px; }
+  .article-item { flex-direction: column; gap: 0.4rem; }
+  .article-link { align-self: flex-start; }
   .site-footer .container { grid-template-columns: 1fr; }
   .footer-legal { text-align: left; }
   .footer-legal nav { justify-content: flex-start; }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .btn { transition: none; }
+  .btn, .path-card { transition: none; }
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="site-nav" aria-label="Site navigation">
   <div class="container">
-    <a href="../" class="brand">The Gospel Story</a>
+    <a href="index.html" class="brand">The Gospel Story</a>
     <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">☰</button>
     <ul class="nav-links">
-      <li><a href="../read/">Read</a></li>
-      <li><a href="../books/" class="active">Books</a></li>
-      <li><a href="../resources/">Resources</a></li>
-      <li><a href="../about/">About</a></li>
-      <li><a href="../subscribe/" class="nav-cta">Subscribe</a></li>
+      <li><a href="read/">Read</a></li>
+      <li><a href="books/">Books</a></li>
+      <li><a href="resources/">Resources</a></li>
+      <li><a href="about/">About</a></li>
+      <li><a href="subscribe/" class="nav-cta">Subscribe</a></li>
     </ul>
   </div>
 </nav>
 
-<header class="page-hero">
+<!-- HERO -->
+<header class="hero">
   <div class="container">
-    <span class="eyebrow">Published Works</span>
-    <h1>Books</h1>
-    <p>Written to help you read Scripture as the one story it is — from Genesis to Revelation.</p>
+    <span class="hero-eyebrow">Scripture · Christ · One Story</span>
+    <h1>The Gospel Story<em>from Genesis to Revelation</em></h1>
+    <p class="hero-desc">Helping believers and seekers understand Scripture as one unified story — centered on Christ.</p>
+    <div class="hero-cta-group">
+      <a href="read/" class="btn btn-primary">Start Reading</a>
+      <a href="subscribe/" class="btn btn-outline">Get the Free PDF</a>
+    </div>
   </div>
 </header>
 
-<section class="section">
+<!-- WHERE TO BEGIN -->
+<section class="section" id="begin">
   <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Start Here</span>
+      <h2 class="section-title">Where Should I Begin?</h2>
+      <p class="section-sub">Choose what best describes you.</p>
+    </div>
+    <div class="paths-grid">
+      <div class="path-card reveal">
+        <h3>I want to understand the Gospel.</h3>
+        <p>Beginner-friendly articles answering the questions most people carry but rarely ask.</p>
+        <a href="read/" class="btn">Start Reading</a>
+      </div>
+      <div class="path-card reveal">
+        <h3>I want to study deeper.</h3>
+        <p>Free materials designed for personal reflection and group study.</p>
+        <a href="resources/" class="btn">Free Resources</a>
+      </div>
+      <div class="path-card reveal">
+        <h3>I want a complete guide.</h3>
+        <p>Books that walk through the Gospel Story from Scripture, beginning to end.</p>
+        <a href="books/" class="btn">View Books</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!--
-      ═══════════════════════════════════════════════════════════════
-      BOOK LIST — ADD NEW BOOKS HERE
-      To add a new book: copy one .book-entry block below,
-      paste it above the existing entries, and update the content.
-      Replace the .book-cover-placeholder div with an <img> tag
-      once you have a cover image.
-      ═══════════════════════════════════════════════════════════════
-    -->
-    <div id="book-list">
+<!-- LATEST — auto-populated from registry.json -->
+<section class="section articles-section" id="latest">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Latest</span>
+      <h2 class="section-title">Recent Sermons & Studies</h2>
+    </div>
+    <div class="article-list" id="latest-list">
+      <p class="loading-state">Loading…</p>
+    </div>
+    <div style="margin-top:2rem;" class="reveal">
+      <a href="read/" class="btn btn-ghost">View All →</a>
+    </div>
+  </div>
+</section>
 
-      <!-- BOOK 1 ─────────────────────────────────────────────────── -->
-      <div class="book-entry reveal">
-        <div class="book-cover">
-          <!--
-            THUMBNAIL — three ways to add your cover image:
+<!-- BOOKS -->
+<section class="section" id="books">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Featured Books</span>
+      <h2 class="section-title">Go Deeper</h2>
+      <p class="section-sub">Written to help you read Scripture as the one story it is.</p>
+    </div>
+    <div class="books-grid">
 
-            Option A: Self-hosted (recommended long-term)
-            <a href="YOUR_BOOK1_AMAZON_URL" target="_blank" rel="noopener">
-              <img src="../assets/images/book1-cover.jpg" alt="Better Understanding of the Gospel Story cover">
-            </a>
-
-            Option B: Hotlink from Amazon
-            Right-click your book cover on Amazon → Copy image address
-            <a href="YOUR_BOOK1_AMAZON_URL" target="_blank" rel="noopener">
-              <img src="https://m.media-amazon.com/images/I/XXXXX.jpg" alt="Better Understanding of the Gospel Story cover">
-            </a>
-
-            For now the placeholder is shown below. Replace the entire
-            <div class="book-cover-placeholder"> block with one of the
-            <a><img></a> examples above when your image is ready.
+      <!-- BOOK 1 ─────────────────────────────────────────────────────
+           To use a real cover image, replace the .book-placeholder div
+           with: <img src="assets/images/book1-cover.jpg" alt="...">
+           Or hotlink from Amazon: right-click cover → Copy image address
+           then: <img src="https://m.media-amazon.com/images/I/XXXX.jpg" alt="...">
+           The <a> wrapper makes the whole thumbnail clickable.
+      ──────────────────────────────────────────────────────────────── -->
+      <div class="book-card reveal">
+        <!-- BOOK 1 THUMBNAIL — replace href with your Amazon link -->
+        <a href="https://a.co/d/0b4DRPCP" target="_blank" rel="noopener" class="book-thumb-link">
+          <!-- Replace this block with an <img> tag when you have your cover -->
+          <div img src="https://s3.amazonaws.com/CAPS-SSE/content/66230320/DIGITAL_BOOK_THUMBNAIL?versionId=brH2t6Hobw2yY1OzNI23BpIYBW_DQcJB&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260629T084137Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAWBV6LQ4QA64RLHGJ%2F20260629%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9b2652d0d0e9d68ad55b4f8e4f16786d1c2a218bd03a3e75de576aea9e7f685f" </div>
+          <!-- Example with real image:
+          <img src="assets/images/book1-cover.jpg" alt="Better Understanding of the Gospel Story cover">
           -->
-          <a href="YOUR_BOOK1_AMAZON_URL" target="_blank" rel="noopener" class="book-thumb-link">
-          <img src="https://s3.amazonaws.com/CAPS-SSE/content/66230320/DIGITAL_BOOK_THUMBNAIL?versionId=brH2t6Hobw2yY1OzNI23BpIYBW_DQcJB&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260629T084137Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAWBV6LQ4QA64RLHGJ%2F20260629%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=9b2652d0d0e9d68ad55b4f8e4f16786d1c2a218bd03a3e75de576aea9e7f685f" alt="Better Understanding of the Gospel Story cover">
-          </a>
-          <span class="book-badge">Available Now</span>
-        </div>
-        <div class="book-details">
+        </a>
+        <div class="book-info">
           <h3>Better Understanding of the Gospel Story</h3>
-          <p class="book-tagline">See the Bible as one unified narrative, not disconnected events.</p>
-          <p>
-            Most Christians read the Bible in fragments — a verse here, a passage there — without ever seeing the thread that runs from Genesis to Revelation. This book traces that thread: the one Gospel Story that holds all of Scripture together, centered on the person and work of Jesus Christ.
-          </p>
-          <div class="book-actions">
-            <a href="YOUR_BOOK1_AMAZON_URL" target="_blank" rel="noopener" class="btn btn-primary">Buy on Amazon</a>
-            <a href="../read/" class="btn btn-navy">Read Free Articles</a>
-          </div>
+          <p>Discover the Bible as one unified Gospel Story rather than a collection of disconnected events.</p>
         </div>
       </div>
 
-      <!-- BOOK 2 ─────────────────────────────────────────────────── -->
-   <img src="https://s3.amazonaws.com/CAPS-SSE/content/65099834/DIGITAL_BOOK_THUMBNAIL?versionId=f_9vPvgDmwTjRhVuMtpRjhUaeEeGdqFb&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260629T084137Z&X-Amz-SignedHeaders=host&X-Amz-Expires=7200&X-Amz-Credential=AKIAWBV6LQ4QA64RLHGJ%2F20260629%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=342702afbd07bf92d02226f4cb10553f7ba6c1687c2ff71cf19080fca92ff640" alt="Life Reflective of the Gospel Story cover" alt="Better Understanding of the Gospel Story cover">
-          </a>
-        </div>
-        <div class="book-details">
+      <!-- BOOK 2 ──────────────────────────────────────────────────── -->
+      <div class="book-card reveal">
+        <!-- BOOK 2 THUMBNAIL — replace href with your Amazon link -->
+        <a href="https://a.co/d/0cG96Ofc" target="_blank" rel="noopener" class="book-thumb-link">
+          <div class="book-placeholder" aria-hidden="true">✦</div>
+          <!-- Example with real image:
+          <img src="assets/images/book2-cover.jpg" alt="Life Reflective of the Gospel Story cover">
+          -->
+        </a>
+        <div class="book-info">
           <h3>Life Reflective of the Gospel Story</h3>
-          <p class="book-tagline">How the Gospel shapes everyday life, identity, and discipleship.</p>
-          <p>
-            Understanding the Gospel Story is not merely an intellectual exercise — it reshapes how we live. This book explores what it looks like when the Gospel becomes the lens through which a believer sees their identity, their relationships, and their calling in the world.
-          </p>
-          <div class="book-actions">
-            <a href="YOUR_BOOK2_AMAZON_URL" target="_blank" rel="noopener" class="btn btn-primary">Buy on Amazon</a>
-          </div>
+          <p>Learn how the Gospel shapes everyday life, identity, and the call to discipleship.</p>
         </div>
       </div>
-
-      <!--
-        ADD NEW BOOK HERE — copy one book-entry block above,
-        paste it above Book 1, and update all content.
-        Replace YOUR_BOOKX_AMAZON_URL with the real Amazon link.
-      -->
 
     </div>
   </div>
 </section>
 
-<!-- SUPPORT BAND -->
-<div class="support-band">
+<!-- EMAIL CAPTURE -->
+<section class="section email-section" id="subscribe">
   <div class="container">
-    <div class="ornament"><span>✦</span></div>
-    <p>If these books have helped you understand Scripture, you are welcome to support the ongoing work of The Gospel Story.</p>
-    <!-- BUYMEACOFFEE-URL: replace YOUR_DONATION_URL with your PayPal or donation link -->
-    <a href="YOUR_DONATION_URL" target="_blank" rel="noopener" class="btn btn-primary">Support This Ministry</a>
+    <div class="reveal">
+      <span class="eyebrow">Free Resource</span>
+      <h2 class="section-title">Five Gospel Misunderstandings</h2>
+      <p class="section-sub">Receive a free PDF and occasional articles exploring Scripture through the Gospel Story.</p>
+    </div>
+    <!-- KIT-FORM-ACTION: replace YOUR_KIT_FORM_ACTION_URL with your Kit form action URL -->
+    <form class="email-form reveal" action="YOUR_KIT_FORM_ACTION_URL" method="post" target="_blank">
+      <input type="email" name="email_address" placeholder="Your email address" aria-label="Email address" required>
+      <button type="submit" class="btn btn-primary">Send Me the PDF</button>
+    </form>
   </div>
-</div>
+</section>
 
+<!-- SUPPORT -->
+<section class="section support-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="ornament"><span>✦</span></div>
+      <span class="eyebrow" style="text-align:center;">Support the Work</span>
+      <h2 class="section-title" style="text-align:center; margin-bottom:1rem;">If This Has Been Helpful</h2>
+      <p>This ministry is offered freely. If the Gospel Story has helped you understand Scripture, you are welcome to support the work.</p>
+      <!-- BUYMEACOFFEE-URL: replace YOUR_DONATION_URL with your PayPal or donation link -->
+      <a href="YOUR_DONATION_URL" target="_blank" rel="noopener" class="btn btn-primary">Support This Ministry</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Reader Responses</span>
+      <h2 class="section-title">What Readers Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <blockquote class="testimonial reveal">
+        <p>This book helped me see Scripture as one story — not isolated passages, but a single, coherent revelation.</p>
+      </blockquote>
+      <blockquote class="testimonial reveal">
+        <p>It changed how I read the Bible. I understood Christ differently after reading this.</p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="ornament"><span>✦</span></div>
+      <span class="eyebrow" style="text-align:center;">About</span>
+      <p style="margin-top:1rem;">I write to help believers and seekers understand Scripture through the Gospel Story. Rather than focusing on isolated passages, my goal is to help readers see the Bible as one coherent revelation — centered on Christ, from beginning to end.</p>
+      <div style="margin-top:1.5rem; text-align:center;">
+        <a href="about/" class="btn btn-ghost">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-brand">
@@ -255,17 +366,17 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
       <p>Helping believers and seekers<br>understand Scripture as one<br>unified story centered on Christ.</p>
     </div>
     <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="../read/">Read</a>
-      <a href="../books/">Books</a>
-      <a href="../resources/">Resources</a>
-      <a href="../about/">About</a>
-      <a href="../subscribe/">Subscribe</a>
+      <a href="read/">Read</a>
+      <a href="books/">Books</a>
+      <a href="resources/">Resources</a>
+      <a href="about/">About</a>
+      <a href="subscribe/">Subscribe</a>
     </nav>
     <div class="footer-legal">
       <nav>
         <a href="#">Amazon Author Page</a>
         <a href="#">Contact</a>
-        <a href="../privacy/">Privacy</a>
+        <a href="privacy/">Privacy</a>
       </nav>
       <p>© 2026 The Gospel Story. All rights reserved.</p>
     </div>
@@ -273,12 +384,56 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
 </footer>
 
 <script>
+// ── Scroll reveal ──────────────────────────────────────────────────
 const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(
-  entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+const revealObserver = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } }),
   { threshold: 0.1 }
 );
-reveals.forEach(el => observer.observe(el));
+reveals.forEach(el => revealObserver.observe(el));
+
+// ── Auto-load latest from registry.json ───────────────────────────
+async function loadLatest() {
+  const list = document.getElementById('latest-list');
+  try {
+    const res = await fetch('registry.json');
+    if (!res.ok) throw new Error('registry not found');
+    const entries = await res.json();
+
+    // Sort newest first, show max 4
+    const sorted = entries
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 4);
+
+    if (sorted.length === 0) {
+      list.innerHTML = '<p class="loading-state">No entries yet.</p>';
+      return;
+    }
+
+    list.innerHTML = sorted.map(entry => `
+      <div class="article-item reveal">
+        <div class="article-content">
+          <span class="article-meta">${entry.type === 'sermon' ? 'Sermon' : 'Study'}${entry.series ? ' · ' + entry.series : ''} · ${formatDate(entry.date)}</span>
+          <h3>${entry.title}</h3>
+          <p>${entry.scripture} — ${entry.description}</p>
+        </div>
+        <a href="${entry.file}" class="article-link">Read →</a>
+      </div>
+    `).join('');
+
+    // Observe newly added elements
+    list.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  } catch (e) {
+    list.innerHTML = '<p class="loading-state">Content coming soon.</p>';
+  }
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+loadLatest();
 </script>
 </body>
 </html>
