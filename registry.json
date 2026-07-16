@@ -8,9 +8,9 @@
     "description": "Existential crisis is rooted in sin — but Jesus came, the Word made flesh, to uproot the serpent's lie and restore our identity in God."
   },
   {
-    "slug": "my-new-article",
-    "title": "Your Article Title Here",
-    "type": "sermon",
+    "slug": "your-slug",
+    "title": "testing123",
+    "type": "testing123",
     "date": "2026-07-16",
     "scripture": "The main Scripture reference(s) here",
     "description": "A one or two sentence summary of what this article is about. This appears on the Read listing page."
