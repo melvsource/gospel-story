@@ -1,20 +1,18 @@
 [
   {
-    "type": "sermon",
-    "title": "Sample Sermon — The Lamb of God",
-    "scripture": "John 1:29–34",
-    "description": "Why John calls Jesus the Lamb, and what that means for the whole story of Scripture.",
-    "file": "sermons/the-lamb-of-god.html",
-    "date": "2026-06-27",
-    "series": null
+    "slug": "yes-he-did-say",
+    "title": "Yes, He Did Say",
+    "type": "devotional",
+    "date": "2026-07-15",
+    "scripture": "Genesis 3:1 · John 1:12 · Revelation 20:10",
+    "description": "Existential crisis is rooted in sin — but Jesus came, the Word made flesh, to uproot the serpent's lie and restore our identity in God."
   },
   {
-    "type": "study",
-    "title": "Gospel Foundations — Part 1",
-    "scripture": "Genesis 1:1",
-    "description": "Where the Gospel story actually begins — before the New Testament, before Israel, before everything.",
-    "file": "studies/gospel-foundations-01.html",
-    "date": "2026-06-20",
-    "series": "Gospel Foundations"
+    "slug": "my-new-article",
+    "title": "Your Article Title Here",
+    "type": "sermon",
+    "date": "2026-07-16",
+    "scripture": "The main Scripture reference(s) here",
+    "description": "A one or two sentence summary of what this article is about. This appears on the Read listing page."
   }
 ]
