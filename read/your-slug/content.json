@@ -1,0 +1,80 @@
+{
+  "title": "Your Article Title Here",
+  "subtitle": "A short line that captures the heart of the piece — optional.",
+  "type": "sermon",
+  "date": "2026-07-16",
+  "scripture": "The main Scripture reference(s) here",
+  "sections": [
+    {
+      "label": "I · Your First Section Title",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "This is a regular paragraph. Write your content here. You can use <em>italic</em> or <strong>bold</strong> inside the text."
+        },
+        {
+          "type": "paragraph",
+          "text": "Add as many paragraph blocks as you need. Each one becomes its own paragraph on the page."
+        },
+        {
+          "type": "verse",
+          "style": "normal",
+          "text": "\"Your Scripture quote goes here.\"",
+          "reference": "Book Chapter:Verse"
+        }
+      ]
+    },
+    {
+      "label": "II · Your Second Section Title",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Continue your writing here."
+        },
+        {
+          "type": "verse",
+          "style": "warning",
+          "text": "\"Use style: warning for a verse you want highlighted in red — like a warning, a judgment, or a contrast.\"",
+          "reference": "Book Chapter:Verse"
+        },
+        {
+          "type": "verse",
+          "style": "closing",
+          "text": "\"Use style: closing for a verse that lands the final point — a climax or conclusion.\"",
+          "reference": "Book Chapter:Verse"
+        }
+      ]
+    },
+    {
+      "label": "III · Optional — If You Have Declarations",
+      "blocks": [
+        {
+          "type": "declaration-intro",
+          "text": "The lead-in sentence before the list —",
+          "heading": "The Heading That Follows:"
+        },
+        {
+          "type": "declarations",
+          "items": [
+            { "claim": "First Claim",  "verse": "\"The verse that supports it.\"", "reference": "Book Chapter:Verse" },
+            { "claim": "Second Claim", "verse": "\"The verse that supports it.\"", "reference": "Book Chapter:Verse" },
+            { "claim": "Third Claim",  "verse": "\"The verse that supports it.\"", "reference": "Book Chapter:Verse" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "IV · Your Final Section",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Your closing thoughts go here."
+        },
+        {
+          "type": "closing-line",
+          "text": "A short, memorable final line — centered and italicized on the page."
+        }
+      ]
+    }
+  ]
+}
