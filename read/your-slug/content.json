@@ -1,16 +1,16 @@
 {
-  "title": "Your Article Title Here",
-  "subtitle": "A short line that captures the heart of the piece — optional.",
-  "type": "sermon",
+  "title": "testing 123",
+  "subtitle": "testing optional subtitle.",
+  "type": "short read",
   "date": "2026-07-16",
-  "scripture": "The main Scripture reference(s) here",
+  "scripture": "Ezekiel123",
   "sections": [
     {
-      "label": "I · Your First Section Title",
+      "label": "I · Paragraph title if needed",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "This is a regular paragraph. Write your content here. You can use <em>italic</em> or <strong>bold</strong> inside the text."
+          "text": "The quick brown fox jump over the crazy dog near the bank of the river Euphrates."
         },
         {
           "type": "paragraph",
