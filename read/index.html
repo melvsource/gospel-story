@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yes, He Did Say — The Gospel Story</title>
-<meta name="description" content="Existential crisis is rooted in sin. But Jesus came — the Word made flesh — to uproot the serpent's lie and restore our identity in God.">
+<title>Read — The Gospel Story</title>
+<meta name="description" content="Sermons, studies, and devotionals exploring Scripture as one unified story centered on Christ.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-/* ─── TOKENS ────────────────────────────────────────────────────── */
+/* ─── TOKENS (match index.html exactly) ─────────────────────────── */
 :root {
   --navy:       #1A2744;
   --navy-light: #253560;
@@ -21,22 +21,21 @@
   --text:       #2C2C2C;
   --text-muted: #5A5A5A;
   --rule:       #D9CEB5;
-  --red:        #8B2222;
   --font-display: 'Cinzel', Georgia, serif;
   --font-body:    'EB Garamond', Georgia, serif;
-  --max-w: 700px;
+  --max-w: 780px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--cream); color: var(--text); font-family: var(--font-body); font-size: 1.125rem; line-height: 1.85; -webkit-font-smoothing: antialiased; }
+body { background: var(--cream); color: var(--text); font-family: var(--font-body); font-size: 1.125rem; line-height: 1.8; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 
 .container { max-width: var(--max-w); margin-inline: auto; padding-inline: 1.5rem; }
 
 /* ─── NAV ────────────────────────────────────────────────────────── */
 .site-nav { background: var(--navy); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.site-nav .container { display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; gap: 1rem; max-width: 780px; }
+.site-nav .container { display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; gap: 1rem; }
 .site-nav .brand { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
 .nav-links { display: flex; list-style: none; gap: 2rem; }
 .nav-links a { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); transition: color 0.2s; }
@@ -44,148 +43,117 @@ a { color: inherit; text-decoration: none; }
 .nav-links .nav-cta { color: var(--gold); }
 .nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.2rem; cursor: pointer; padding: 0.25rem; }
 
-/* ─── ARTICLE HEADER ─────────────────────────────────────────────── */
-.article-hero { background: var(--navy); background-image: radial-gradient(ellipse at 30% 60%, rgba(184,149,42,0.08) 0%, transparent 60%), linear-gradient(170deg, #1A2744 0%, #0F1A33 100%); padding-block: 4.5rem 4rem; text-align: center; }
-.article-hero .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 2rem; transition: color 0.2s; }
-.article-hero .back-link:hover { color: var(--gold-light); }
-.article-hero .eyebrow { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1.25rem; }
-.article-hero h1 { font-family: var(--font-display); font-size: clamp(1.7rem, 5vw, 2.8rem); font-weight: 700; color: #fff; letter-spacing: 0.04em; line-height: 1.2; margin-bottom: 0.5rem; }
-.article-hero h1 em { font-style: italic; font-family: var(--font-body); color: var(--gold-light); font-weight: 400; }
-.article-hero .sub { font-size: 1rem; color: rgba(255,255,255,0.5); font-style: italic; max-width: 480px; margin-inline: auto; margin-top: 1rem; line-height: 1.8; }
-.article-meta-bar { display: flex; justify-content: center; align-items: center; gap: 1.25rem; margin-top: 1.75rem; flex-wrap: wrap; }
-.meta-tag { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.25rem 0.65rem; background: rgba(184,149,42,0.15); color: var(--gold-light); border-radius: 2px; }
-.meta-date { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); }
+/* ─── PAGE HEADER ────────────────────────────────────────────────── */
+.page-hero { background: var(--navy); background-image: radial-gradient(ellipse at 30% 60%, rgba(184,149,42,0.08) 0%, transparent 60%), linear-gradient(170deg, #1A2744 0%, #0F1A33 100%); padding-block: 4rem 3.5rem; text-align: center; }
+.page-hero .eyebrow { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 1rem; }
+.page-hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; line-height: 1.2; margin-bottom: 0.75rem; }
+.page-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); font-style: italic; max-width: 460px; margin-inline: auto; }
 
-/* ─── ARTICLE BODY ───────────────────────────────────────────────── */
-.article-body { padding-block: 3.5rem 5rem; }
+/* ─── FILTER BAR ─────────────────────────────────────────────────── */
+.filter-bar { background: var(--parchment); border-bottom: 1px solid var(--rule); padding-block: 1rem; }
+.filter-bar .container { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.filter-label { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); margin-right: 0.5rem; }
+.filter-btn { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.4rem 0.9rem; border: 1px solid var(--rule); background: transparent; color: var(--text-muted); cursor: pointer; border-radius: 2px; transition: all 0.18s; }
+.filter-btn:hover { border-color: var(--gold); color: var(--navy); }
+.filter-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
 
-.article-body p { margin-bottom: 1.4em; font-size: 1.1rem; color: var(--text); }
-.article-body p:last-child { margin-bottom: 0; }
+/* ─── ARTICLE LIST ───────────────────────────────────────────────── */
+.articles-section { padding-block: 3rem 5rem; }
+.article-list { display: flex; flex-direction: column; }
 
-/* Section labels */
-.section-marker {
+.article-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 1.5rem 2rem;
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.18s;
+}
+.article-item:first-child { border-top: 1px solid var(--rule); }
+.article-item:hover { background: var(--parchment); margin-inline: -1.5rem; padding-inline: 1.5rem; }
+
+.article-meta {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-block: 3rem 1.5rem;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
 }
-.section-marker::before { content: ''; flex: 0 0 24px; height: 1px; background: var(--gold); opacity: 0.5; }
-.section-marker span { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); }
-.section-marker::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
-
-/* The serpent's question — highlighted in red */
-.serpent-block {
-  border-left: 3px solid var(--red);
-  padding: 1.5rem 1.75rem 1.5rem 1.75rem;
-  background: rgba(139,34,34,0.04);
-  margin-block: 2rem;
-}
-.serpent-block blockquote {
+.meta-tag {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: var(--red);
-  letter-spacing: 0.04em;
-  line-height: 1.5;
-  margin-bottom: 0.6rem;
-}
-.serpent-block cite {
-  font-family: var(--font-display);
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 2px;
+}
+.meta-tag.sermon   { background: rgba(26,39,68,0.08); color: var(--navy); }
+.meta-tag.study    { background: rgba(184,149,42,0.12); color: #7a5c00; }
+.meta-tag.devotional { background: rgba(100,120,80,0.1); color: #3d5c30; }
+.meta-date {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
   color: var(--slate);
-  font-style: normal;
+}
+.meta-series {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
 }
 
-/* The declaration turn */
-.declaration-turn {
-  text-align: center;
-  padding-block: 2.5rem;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  margin-block: 3rem;
-}
-.declaration-turn p { font-size: 1rem; font-style: italic; color: var(--text-muted); margin-bottom: 0.5rem; }
-.declaration-turn strong {
-  display: block;
+.article-content h2 {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--navy);
-  letter-spacing: 0.05em;
-  margin-top: 0.25rem;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  margin-bottom: 0.35rem;
+  transition: color 0.18s;
 }
+.article-item:hover .article-content h2 { color: var(--gold); }
 
-/* Identity list */
-.identity-list { display: flex; flex-direction: column; gap: 0; margin-block: 2rem; }
-
-.identity-item {
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.35rem;
-}
-.identity-item:first-child { border-top: 1px solid var(--rule); }
-
-.identity-claim {
-  font-family: var(--font-display);
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--navy);
-  letter-spacing: 0.04em;
-}
-.identity-claim span { color: var(--gold); }
-
-.identity-verse {
-  font-size: 0.95rem;
+.article-content .scripture-ref {
+  font-size: 0.85rem;
   font-style: italic;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+.article-content p {
+  font-size: 0.92rem;
   color: var(--text-muted);
+  font-style: italic;
   line-height: 1.65;
 }
 
-.identity-ref {
+.article-link {
   font-family: var(--font-display);
   font-size: 0.58rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.8;
+  white-space: nowrap;
+  padding-top: 0.25rem;
+  transition: color 0.2s;
+  align-self: start;
 }
+.article-link:hover { color: var(--navy); }
 
-/* Closing verse block */
-.closing-verse {
-  background: var(--parchment);
-  border: 1px solid var(--rule);
-  border-top: 3px solid var(--navy);
-  padding: 2rem 2.25rem;
-  margin-block: 3rem;
-}
-.closing-verse blockquote {
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--text);
-  line-height: 1.8;
-  margin-bottom: 0.75rem;
-}
-.closing-verse cite {
-  font-family: var(--font-display);
-  font-size: 0.58rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--slate);
-  font-style: normal;
-}
+/* Empty / loading */
+.empty-state { text-align: center; padding: 4rem 1rem; font-style: italic; color: var(--slate); }
 
-/* Ornament */
-.ornament { display: flex; align-items: center; gap: 1rem; margin-block: 2.5rem; }
+/* ─── ORNAMENT ───────────────────────────────────────────────────── */
+.ornament { display: flex; align-items: center; gap: 1rem; margin-block: 1rem 2rem; }
 .ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 .ornament span { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
 
 /* ─── FOOTER ─────────────────────────────────────────────────────── */
 .site-footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); padding-block: 3rem; }
-.site-footer .container { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 2rem; max-width: 780px; }
+.site-footer .container { display: grid; grid-template-columns: 1fr auto 1fr; align-items: start; gap: 2rem; }
 .footer-brand .brand { font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.5rem; }
 .footer-brand p { font-size: 0.82rem; color: rgba(255,255,255,0.35); font-style: italic; line-height: 1.7; }
 .footer-nav { display: flex; flex-direction: column; gap: 0.6rem; align-items: center; }
@@ -197,6 +165,10 @@ a { color: inherit; text-decoration: none; }
 .footer-legal nav a:hover { color: var(--gold-light); }
 .footer-legal p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
 
+/* ─── REVEAL ─────────────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
 /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .nav-toggle { display: block; }
@@ -204,13 +176,15 @@ a { color: inherit; text-decoration: none; }
   .nav-links.open { display: flex; }
   .nav-links li { padding-block: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .site-nav { position: relative; }
+  .article-item { grid-template-columns: 1fr; }
+  .article-link { align-self: auto; }
   .site-footer .container { grid-template-columns: 1fr; }
   .footer-legal { text-align: left; }
   .footer-legal nav { justify-content: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
 </style>
 </head>
@@ -219,220 +193,46 @@ a { color: inherit; text-decoration: none; }
 <!-- NAV -->
 <nav class="site-nav" aria-label="Site navigation">
   <div class="container">
-    <a href="../../index.html" class="brand">The Gospel Story</a>
+    <a href="../index.html" class="brand">The Gospel Story</a>
     <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">☰</button>
     <ul class="nav-links">
-      <li><a href="../../read/" class="active">Read</a></li>
-      <li><a href="../../books/">Books</a></li>
-      <li><a href="../../resources/">Resources</a></li>
-      <li><a href="../../about/">About</a></li>
-      <li><a href="../../subscribe/" class="nav-cta">Subscribe</a></li>
+      <li><a href="../read/" class="active">Read</a></li>
+      <li><a href="../books/">Books</a></li>
+      <li><a href="../resources/">Resources</a></li>
+      <li><a href="../about/">About</a></li>
+      <li><a href="../subscribe/" class="nav-cta">Subscribe</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- ARTICLE HEADER -->
-<header class="article-hero">
+<!-- PAGE HERO -->
+<header class="page-hero">
   <div class="container">
-    <a href="../" class="back-link">← Back to Read</a>
-    <span class="eyebrow">Devotional</span>
-    <h1>Yes, He <em>Did</em> Say</h1>
-    <p class="sub">From the question that broke the world, to the Word that restores it.</p>
-    <div class="article-meta-bar">
-      <span class="meta-tag">Devotional</span>
-      <span class="meta-date">July 15, 2026</span>
-    </div>
+    <span class="eyebrow">Sermons · Studies · Devotionals</span>
+    <h1>Read</h1>
+    <p>Exploring Scripture as one unified story — centered on Christ, from Genesis to Revelation.</p>
   </div>
 </header>
 
-<!-- ARTICLE BODY -->
-<article class="article-body">
+<!-- FILTER BAR -->
+<div class="filter-bar">
   <div class="container">
-
-    <!-- I. THE CRISIS -->
-    <div class="section-marker"><span>I · The Root of the Crisis</span></div>
-
-    <p>
-      Before there was anxiety, before the first sleepless night, before the weight of wondering
-      <em>why am I here</em> — there was a garden. And in that garden, there was no existential crisis.
-      Adam did not question his existence. He knew who he was, whose he was, and what he was made for.
-      The ground was firm beneath him because he was rooted in the word of God.
-    </p>
-
-    <p>
-      Existential crisis is not, at its core, a philosophical problem. It is a spiritual wound —
-      and it is <em>rooted in sin.</em> Not merely in what we do wrong, but in the rupture that
-      made doing wrong possible in the first place. The serpent did not attack Adam and Eve with
-      force. He attacked them with a seed — a whisper wrapped in the shape of a question.
-    </p>
-
-    <div class="serpent-block">
-      <blockquote>"Did God really say?"</blockquote>
-      <cite>Genesis 3:1</cite>
-    </div>
-
-    <p>
-      This is the most catastrophic question in human history. Not because it was clever — but
-      because it was aimed with surgical precision at the one thing that held everything together:
-      trust in the word of God. That seed took root. And when it did, it didn't just cause one act
-      of disobedience. It corrupted the very soil of human identity.
-    </p>
-
-    <p>
-      From that moment, every man and woman born into this world has grown up reaching for a sense
-      of self that keeps slipping away — because the ground beneath them is no longer secure. We
-      grasp for meaning, for worth, for purpose — unaware that what we've lost is not confidence,
-      but a word. <em>God's word about us.</em>
-    </p>
-
-    <!-- II. THE ANSWER -->
-    <div class="section-marker"><span>II · The Word Made Flesh</span></div>
-
-    <p>
-      But the serpent's whisper was not the last word. It was never going to be the last word.
-    </p>
-
-    <p>
-      Into this broken, question-haunted world, God did not send a philosopher or a self-help
-      manual. He sent His Son — the One who, before any of this began, was already with God, who
-      shared in God's eternal glory, and who was not merely a messenger of divine truth, but was
-      Himself the very expression of it. He was the Word — and He became flesh.
-    </p>
-
-    <p>
-      He walked through the serpent's poisoned world without flinching, without doubting, without
-      once letting the enemy's question gain a foothold. When tempted in the wilderness, His answer
-      was always the same: <em>"It is written."</em> He met every distortion of God's word with
-      the word itself. And then He died — not because He was defeated, but because He was deliberate.
-      He bore every consequence of that ancient rupture, and He buried it in the tomb.
-    </p>
-
-    <p>
-      And on the third day, He rose. The resurrection was not simply proof of life after death.
-      It was the irrefutable, indisputable, once-and-for-all vindication of every word God has
-      ever spoken about us. It was God answering the serpent's question — not with an argument,
-      but with an empty grave.
-    </p>
-
-    <p>
-      Everything Jesus did — His incarnation, His perfect life, His teaching, His death, His
-      resurrection — was a systematic uprooting of that planted lie. He came to restore what the
-      serpent stole: our knowledge of who we are in God. And He succeeded completely.
-    </p>
-
-    <!-- III. THE DECLARATIONS -->
-    <div class="declaration-turn">
-      <p>So now, those who are called in Christ can truly say —</p>
-      <strong>Yes, He Did Say:</strong>
-    </div>
-
-    <div class="identity-list">
-
-      <div class="identity-item">
-        <p class="identity-claim">I am a <span>Child of God</span></p>
-        <p class="identity-verse">"But to all who did receive him, who believed in his name, he gave the right to become children of God."</p>
-        <p class="identity-ref">John 1:12</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am a <span>New Creation</span></p>
-        <p class="identity-verse">"Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come."</p>
-        <p class="identity-ref">2 Corinthians 5:17</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am <span>Redeemed</span></p>
-        <p class="identity-verse">"In him we have redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace."</p>
-        <p class="identity-ref">Ephesians 1:7</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am <span>Justified</span></p>
-        <p class="identity-verse">"Therefore, since we have been justified by faith, we have peace with God through our Lord Jesus Christ."</p>
-        <p class="identity-ref">Romans 5:1</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am <span>Chosen</span></p>
-        <p class="identity-verse">"He chose us in him before the foundation of the world, that we should be holy and blameless before him."</p>
-        <p class="identity-ref">Ephesians 1:4</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am <span>Beloved of God</span></p>
-        <p class="identity-verse">"To all those who are loved by God and called to be saints: Grace to you and peace from God our Father and the Lord Jesus Christ."</p>
-        <p class="identity-ref">Romans 1:7</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am <span>Created for Good Works</span></p>
-        <p class="identity-verse">"For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand, that we should walk in them."</p>
-        <p class="identity-ref">Ephesians 2:10</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am an <span>Ambassador for Christ</span></p>
-        <p class="identity-verse">"Therefore, we are ambassadors for Christ, God making his appeal through us."</p>
-        <p class="identity-ref">2 Corinthians 5:20</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am a <span>Friend of Jesus</span></p>
-        <p class="identity-verse">"No longer do I call you servants, for the servant does not know what his master is doing; but I have called you friends."</p>
-        <p class="identity-ref">John 15:15</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am <span>Crucified with Christ</span></p>
-        <p class="identity-verse">"I have been crucified with Christ. It is no longer I who live, but Christ who lives in me. And the life I now live in the flesh I live by faith in the Son of God."</p>
-        <p class="identity-ref">Galatians 2:20</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am <span>Alive with Christ</span></p>
-        <p class="identity-verse">"Even when we were dead in our trespasses, God made us alive together with Christ — by grace you have been saved."</p>
-        <p class="identity-ref">Ephesians 2:5</p>
-      </div>
-
-      <div class="identity-item">
-        <p class="identity-claim">I am <span>Free Indeed</span></p>
-        <p class="identity-verse">"So if the Son sets you free, you will be free indeed."</p>
-        <p class="identity-ref">John 8:36</p>
-      </div>
-
-    </div>
-
-    <!-- IV. THE VERDICT -->
-    <div class="section-marker"><span>IV · The Accuser's End</span></div>
-
-    <p>
-      The serpent who whispered <em>"Did God really say?"</em> — the one who planted doubt in the
-      garden and has fuelled the identity crisis of every generation since — will not have the last
-      word. He who was a liar from the beginning will meet the end that every lie deserves.
-      The accuser will be put to eternal shame. What he did to humanity will be undone. What he
-      said about God will be answered forever.
-    </p>
-
-    <div class="closing-verse">
-      <blockquote>"And the devil who had deceived them was thrown into the lake of fire and sulfur where the beast and the false prophet were, and they will be tormented day and night forever and ever."</blockquote>
-      <cite>Revelation 20:10</cite>
-    </div>
-
-    <p>
-      And the children God named, claimed, and died for will stand in that light — not wondering
-      who they are, but knowing at last, fully and forever. The question the serpent planted has
-      been answered once and for all. God did say. He said it in a manger. He confirmed it on a
-      cross. He sealed it with an empty tomb.
-    </p>
-
-    <div class="ornament"><span>✦</span></div>
-
-    <p style="text-align:center; font-style:italic; color:var(--text-muted);">
-      He said it. Believe it. That settles it.
-    </p>
-
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="sermon">Sermons</button>
+    <button class="filter-btn" data-filter="study">Studies</button>
+    <button class="filter-btn" data-filter="devotional">Devotionals</button>
   </div>
-</article>
+</div>
+
+<!-- ARTICLE LIST -->
+<section class="articles-section">
+  <div class="container">
+    <div class="article-list" id="article-list">
+      <p class="empty-state">Loading…</p>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -442,17 +242,17 @@ a { color: inherit; text-decoration: none; }
       <p>Helping believers and seekers<br>understand Scripture as one<br>unified story centered on Christ.</p>
     </div>
     <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="../../read/">Read</a>
-      <a href="../../books/">Books</a>
-      <a href="../../resources/">Resources</a>
-      <a href="../../about/">About</a>
-      <a href="../../subscribe/">Subscribe</a>
+      <a href="../read/">Read</a>
+      <a href="../books/">Books</a>
+      <a href="../resources/">Resources</a>
+      <a href="../about/">About</a>
+      <a href="../subscribe/">Subscribe</a>
     </nav>
     <div class="footer-legal">
       <nav>
         <a href="https://www.amazon.com/stores/Melvin-Perez-Maghari-Jr/author/B0GT7JHP1Y" target="_blank" rel="noopener">Amazon Author Page</a>
         <a href="#">Contact</a>
-        <a href="../../privacy/">Privacy</a>
+        <a href="../privacy/">Privacy</a>
       </nav>
       <p>© 2026 The Gospel Story. All rights reserved.</p>
     </div>
@@ -460,10 +260,84 @@ a { color: inherit; text-decoration: none; }
 </footer>
 
 <script>
-// Nav toggle (matches site pattern)
-document.querySelector('.nav-toggle')?.addEventListener('click', function() {
-  this.nextElementSibling.classList.toggle('open');
+// ── Scroll reveal ──────────────────────────────────────────────────
+const revealObserver = new IntersectionObserver(
+  entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+  }),
+  { threshold: 0.08 }
+);
+
+function observeReveals() {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+}
+
+// ── Load articles from registry.json ──────────────────────────────
+let allEntries = [];
+let activeFilter = 'all';
+
+async function loadArticles() {
+  const list = document.getElementById('article-list');
+  try {
+    const res = await fetch('../registry.json');
+    if (!res.ok) throw new Error('registry not found');
+    allEntries = await res.json();
+    renderList();
+  } catch (e) {
+    list.innerHTML = '<p class="empty-state">Content coming soon.</p>';
+  }
+}
+
+function renderList() {
+  const list = document.getElementById('article-list');
+  const filtered = activeFilter === 'all'
+    ? allEntries
+    : allEntries.filter(e => e.type === activeFilter);
+
+  const sorted = [...filtered].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  if (sorted.length === 0) {
+    list.innerHTML = '<p class="empty-state">No entries yet.</p>';
+    return;
+  }
+
+  list.innerHTML = sorted.map(entry => `
+    <div class="article-item reveal">
+      <div class="article-content">
+        <div class="article-meta">
+          <span class="meta-tag ${entry.type}">${capitalize(entry.type)}</span>
+          ${entry.series ? `<span class="meta-series">${entry.series}</span>` : ''}
+          <span class="meta-date">${formatDate(entry.date)}</span>
+        </div>
+        <h2>${entry.title}</h2>
+        ${entry.scripture ? `<p class="scripture-ref">${entry.scripture}</p>` : ''}
+        <p>${entry.description}</p>
+      </div>
+      <a href="${entry.file}" class="article-link">Read →</a>
+    </div>
+  `).join('');
+
+  observeReveals();
+}
+
+// ── Filter buttons ─────────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderList();
+  });
 });
+
+// ── Helpers ────────────────────────────────────────────────────────
+function formatDate(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+loadArticles();
 </script>
 </body>
 </html>
