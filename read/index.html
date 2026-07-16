@@ -313,7 +313,7 @@ function renderList() {
         ${entry.scripture ? `<p class="scripture-ref">${entry.scripture}</p>` : ''}
         <p>${entry.description}</p>
       </div>
-      <a href="${entry.file}" class="article-link">Read →</a>
+      <a href="article.html?slug=${entry.slug}" class="article-link">Read →</a>
     </div>
   `).join('');
 
