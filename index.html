@@ -35,6 +35,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── LAYOUT ─────────────────────────────────────────────────────── */
 .container { max-width: var(--max-w); margin-inline: auto; padding-inline: 1.5rem; }
+.container--wide { max-width: 1100px; margin-inline: auto; padding-inline: 1.5rem; }
 .section { padding-block: 5rem; }
 
 /* ─── SHARED TYPOGRAPHY ──────────────────────────────────────────── */
@@ -75,14 +76,26 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
 .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.6); font-style: italic; max-width: 480px; margin-inline: auto; line-height: 1.9; margin-bottom: 2.5rem; }
 .hero-cta-group { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
 
-/* ─── PATH CARDS ─────────────────────────────────────────────────── */
-.paths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
-.path-card { background: #fff; border: 1px solid var(--rule); border-top: 3px solid var(--gold); padding: 1.8rem 1.5rem; transition: box-shadow 0.22s, transform 0.22s; display: flex; flex-direction: column; }
-.path-card:hover { box-shadow: 0 8px 32px rgba(26,39,68,0.1); transform: translateY(-2px); }
-.path-card h3 { font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.03em; color: var(--navy); margin-bottom: 0.75rem; line-height: 1.4; }
-.path-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; font-style: italic; margin-bottom: 1.5rem; flex: 1; }
-.path-card .btn { font-size: 0.6rem; padding: 0.65rem 1.25rem; text-align: center; background: var(--navy); color: #fff; }
-.path-card .btn:hover { background: var(--gold); color: var(--navy); }
+/* ─── LIBRARY GRID ───────────────────────────────────────────────── */
+.library-section { padding-block: 5rem; }
+.library-header { margin-bottom: 3rem; }
+.theme-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+.theme-card { background: #fff; border: 1px solid var(--rule); padding: 1.75rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; transition: border-color 0.2s, transform 0.2s; }
+.theme-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.theme-card.card-more { background: var(--navy); border-color: var(--navy); }
+.theme-card.card-more:hover { border-color: var(--gold); }
+.card-number { font-family: var(--font-display); font-size: 0.52rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.25rem; }
+.card-more .card-number { color: rgba(255,255,255,0.3); }
+.card-title { font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; color: var(--navy); letter-spacing: 0.04em; line-height: 1.4; }
+.card-more .card-title { color: var(--gold-light); }
+.card-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; font-style: italic; flex: 1; }
+.card-more .card-desc { color: rgba(255,255,255,0.45); }
+.card-rule { height: 1px; background: var(--rule); margin-top: auto; margin-bottom: 0.75rem; }
+.card-more .card-rule { background: rgba(255,255,255,0.1); }
+.card-link { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); display: inline-block; transition: letter-spacing 0.2s; }
+.theme-card:hover .card-link { letter-spacing: 0.24em; }
+.card-more .card-link { color: rgba(255,255,255,0.5); }
+.card-more:hover .card-link { color: var(--gold-light); }
 
 /* ─── ARTICLES (parchment bg) ────────────────────────────────────── */
 .articles-section { background: var(--parchment); }
@@ -94,15 +107,11 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3v
 .article-content p { font-size: 0.88rem; color: var(--text-muted); font-style: italic; line-height: 1.6; }
 .article-link { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); white-space: nowrap; flex-shrink: 0; transition: color 0.2s; }
 .article-link:hover { color: var(--navy); }
-
-/* Loading / empty states */
 .loading-state { text-align: center; padding: 2rem; font-style: italic; color: var(--slate); }
 
 /* ─── BOOKS ──────────────────────────────────────────────────────── */
 .books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2.5rem; margin-top: 2.5rem; }
 .book-card { display: flex; gap: 1.5rem; align-items: flex-start; }
-.book-placeholder { width: 90px; height: 130px; background: linear-gradient(145deg, var(--navy) 0%, var(--navy-light) 100%); display: flex; align-items: center; justify-content: center; border: 1px solid var(--rule); box-shadow: 4px 4px 0 var(--rule); color: var(--gold); font-size: 1.8rem; flex-shrink: 0; }
-.book-img { width: 90px; height: 130px; object-fit: cover; border: 1px solid var(--rule); box-shadow: 4px 4px 0 var(--rule); flex-shrink: 0; }
 .book-thumb-link { display: block; flex-shrink: 0; transition: opacity 0.2s, transform 0.2s; }
 .book-thumb-link:hover { opacity: 0.85; transform: translateY(-2px); }
 .book-thumb-link img { width: 90px; height: 130px; object-fit: cover; border: 1px solid var(--rule); box-shadow: 4px 4px 0 var(--rule); }
@@ -152,7 +161,9 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 900px) { .theme-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 640px) {
+  .theme-grid { grid-template-columns: repeat(2, 1fr); }
   .nav-toggle { display: block; }
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy); flex-direction: column; gap: 0; padding: 1rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
   .nav-links.open { display: flex; }
@@ -164,10 +175,9 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
   .footer-legal { text-align: left; }
   .footer-legal nav { justify-content: flex-start; }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .btn, .path-card { transition: none; }
+  .btn, .theme-card { transition: none; }
 }
 </style>
 </head>
@@ -179,7 +189,7 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
     <a href="index.html" class="brand">The Gospel Story</a>
     <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">☰</button>
     <ul class="nav-links">
-      <li><a href="read/">Read</a></li>
+      <li><a href="output/library/">Library</a></li>
       <li><a href="books/">Books</a></li>
       <li><a href="resources/">Resources</a></li>
       <li><a href="about/">About</a></li>
@@ -195,36 +205,118 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
     <h1>The Gospel Story<em>from Genesis to Revelation</em></h1>
     <p class="hero-desc">Helping believers and seekers understand Scripture as one unified story — centered on Christ.</p>
     <div class="hero-cta-group">
-      <a href="read/" class="btn btn-primary">Start Reading</a>
+      <a href="output/library/" class="btn btn-primary">Explore the Library</a>
       <a href="subscribe/" class="btn btn-outline">Get the Free PDF</a>
     </div>
   </div>
 </header>
 
-<!-- WHERE TO BEGIN -->
-<section class="section" id="begin">
-  <div class="container">
-    <div class="reveal">
-      <span class="eyebrow">Start Here</span>
-      <h2 class="section-title">Where Should I Begin?</h2>
-      <p class="section-sub">Choose what best describes you.</p>
+<!-- LIBRARY -->
+<section class="library-section" id="library">
+  <div class="container--wide">
+    <div class="library-header reveal">
+      <span class="eyebrow">The Library</span>
+      <h2 class="section-title">Twelve Threads Through Scripture</h2>
+      <p class="section-sub">Follow any one and find Christ at the center.</p>
     </div>
-    <div class="paths-grid">
-      <div class="path-card reveal">
-        <h3>I want to understand the Gospel.</h3>
-        <p>Beginner-friendly articles answering the questions most people carry but rarely ask.</p>
-        <a href="read/" class="btn">Start Reading</a>
-      </div>
-      <div class="path-card reveal">
-        <h3>I want to study deeper.</h3>
-        <p>Free materials designed for personal reflection and group study.</p>
-        <a href="resources/" class="btn">Free Resources</a>
-      </div>
-      <div class="path-card reveal">
-        <h3>I want a complete guide.</h3>
-        <p>Books that walk through the Gospel Story from Scripture, beginning to end.</p>
-        <a href="books/" class="btn">View Books</a>
-      </div>
+    <div class="theme-grid">
+
+      <a href="output/library/01-creation-and-garden/" class="theme-card reveal">
+        <div class="card-number">01</div>
+        <div class="card-title">Creation &amp; the Garden</div>
+        <div class="card-desc">God creates all things and dwells with humanity in Eden. The pattern everything else strains toward.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/02-the-fall/" class="theme-card reveal">
+        <div class="card-number">02</div>
+        <div class="card-title">The Fall</div>
+        <div class="card-desc">Sin enters. The curse falls. And in the same breath, the first promise of a Redeemer is spoken.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/03-the-flood/" class="theme-card reveal">
+        <div class="card-number">03</div>
+        <div class="card-title">The Flood</div>
+        <div class="card-desc">God judges a broken world — and through the wreckage, preserves a remnant by grace.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/04-promise-and-patriarchs/" class="theme-card reveal">
+        <div class="card-number">04</div>
+        <div class="card-title">The Promise &amp; the Patriarchs</div>
+        <div class="card-desc">From Abraham to Joseph, God binds Himself to a people and a line — against every odd.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/05-the-law/" class="theme-card reveal">
+        <div class="card-number">05</div>
+        <div class="card-title">The Law</div>
+        <div class="card-desc">At Sinai, God reveals His holiness and calls a nation to reflect it. The Law shows the need — and the way.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/06-the-kingdom/" class="theme-card reveal">
+        <div class="card-number">06</div>
+        <div class="card-title">The Kingdom</div>
+        <div class="card-desc">Israel receives kings. Every one of them falls short. The longing for the true King grows.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/07-exile-and-prophets/" class="theme-card reveal">
+        <div class="card-number">07</div>
+        <div class="card-title">Exile &amp; the Prophets</div>
+        <div class="card-desc">God disciplines His people — and through the prophets, speaks of a restoration beyond anything they can imagine.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/08-psalms-and-wisdom/" class="theme-card reveal">
+        <div class="card-number">08</div>
+        <div class="card-title">Psalms &amp; Wisdom</div>
+        <div class="card-desc">Poetry, lament, praise, and hard questions — the full range of the human heart laid bare before God.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/09-messiah-cross-resurrection/" class="theme-card reveal">
+        <div class="card-number">09</div>
+        <div class="card-title">The Messiah, Cross &amp; Resurrection</div>
+        <div class="card-desc">Christ enters history. He lives what we could not, dies in our place, and rises — the hinge of all Scripture.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/10-the-church/" class="theme-card reveal">
+        <div class="card-number">10</div>
+        <div class="card-title">The Church</div>
+        <div class="card-desc">The Spirit comes. A people are sent. The Gospel Story now moves outward to every tongue and nation.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/11-new-creation/" class="theme-card reveal">
+        <div class="card-number">11</div>
+        <div class="card-title">New Creation</div>
+        <div class="card-desc">The story does not end in ashes. God restores all things — and the garden becomes a city filled with His glory.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Read →</span>
+      </a>
+
+      <a href="output/library/12-further-readings/" class="theme-card card-more reveal">
+        <div class="card-number">Further</div>
+        <div class="card-title">Further Readings</div>
+        <div class="card-desc">Recommended resources, study guides, and materials to go deeper into the Gospel Story.</div>
+        <div class="card-rule"></div>
+        <span class="card-link">Explore →</span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -234,13 +326,13 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
   <div class="container">
     <div class="reveal">
       <span class="eyebrow">Latest</span>
-      <h2 class="section-title">Recent Sermons & Studies</h2>
+      <h2 class="section-title">Recent Sermons &amp; Studies</h2>
     </div>
     <div class="article-list" id="latest-list">
       <p class="loading-state">Loading…</p>
     </div>
     <div style="margin-top:2rem;" class="reveal">
-      <a href="read/" class="btn btn-ghost">View All →</a>
+      <a href="output/library/" class="btn btn-ghost">View All →</a>
     </div>
   </div>
 </section>
@@ -254,42 +346,24 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
       <p class="section-sub">Written to help you read Scripture as the one story it is.</p>
     </div>
     <div class="books-grid">
-
-      <!-- BOOK 1 ─────────────────────────────────────────────────────
-           To use a real cover image, replace the .book-placeholder div
-           with: <img src="assets/images/book1-cover.jpg" alt="...">
-           Or hotlink from Amazon: right-click cover → Copy image address
-           then: <img src="https://m.media-amazon.com/images/I/XXXX.jpg" alt="...">
-           The <a> wrapper makes the whole thumbnail clickable.
-      ──────────────────────────────────────────────────────────────── -->
       <div class="book-card reveal">
-        <!-- BOOK 1 THUMBNAIL — replace href with your Amazon link -->
-        <a href="https://a.co/d/0b4DRPCP " target="_blank" rel="noopener" class="book-thumb-link">
-          
+        <a href="https://a.co/d/0b4DRPCP" target="_blank" rel="noopener" class="book-thumb-link">
           <img src="https://m.media-amazon.com/images/I/41nPQHdAO9L._SY445_SX342_QL70_FMwebp_.jpg" alt="Better Understanding of the Gospel Story cover">
-          -->
-          
         </a>
         <div class="book-info">
           <h3>Better Understanding of the Gospel Story</h3>
           <p>Discover the Bible as one unified Gospel Story rather than a collection of disconnected events.</p>
         </div>
       </div>
-
-      <!-- BOOK 2 ──────────────────────────────────────────────────── -->
       <div class="book-card reveal">
-        <!-- BOOK 2 THUMBNAIL — replace href with your Amazon link -->
-        <a href="https://a.co/d/0cG96Ofc " target="_blank" rel="noopener" class="book-thumb-link">
-          
+        <a href="https://a.co/d/0cG96Ofc" target="_blank" rel="noopener" class="book-thumb-link">
           <img src="https://m.media-amazon.com/images/I/41RYtjqSrCL._SY445_SX342_FMwebp_.jpg" alt="Life Reflective of the Gospel Story cover">
-          -->
         </a>
         <div class="book-info">
           <h3>Life Reflective of the Gospel Story</h3>
           <p>Learn how the Gospel shapes everyday life, identity, and the call to discipleship.</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -302,7 +376,6 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
       <h2 class="section-title">Five Gospel Misunderstandings</h2>
       <p class="section-sub">Receive a free PDF and occasional articles exploring Scripture through the Gospel Story.</p>
     </div>
-    <!-- KIT-FORM-ACTION: replace YOUR_KIT_FORM_ACTION_URL with your Kit form action URL -->
     <form class="email-form reveal" action="YOUR_KIT_FORM_ACTION_URL" method="post" target="_blank">
       <input type="email" name="email_address" placeholder="Your email address" aria-label="Email address" required>
       <button type="submit" class="btn btn-primary">Send Me the PDF</button>
@@ -318,7 +391,6 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
       <span class="eyebrow" style="text-align:center;">Support the Work</span>
       <h2 class="section-title" style="text-align:center; margin-bottom:1rem;">If This Has Been Helpful</h2>
       <p>This ministry is offered freely. If the Gospel Story has helped you understand Scripture, you are welcome to support the work.</p>
-      <!-- BUYMEACOFFEE-URL: replace YOUR_DONATION_URL with your PayPal or donation link -->
       <a href="https://www.paypal.com/ncp/payment/J6MDREWJPG4PY" target="_blank" rel="noopener" class="btn btn-primary">Support This Ministry</a>
     </div>
   </div>
@@ -364,7 +436,7 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
       <p>Helping believers and seekers<br>understand Scripture as one<br>unified story centered on Christ.</p>
     </div>
     <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="read/">Read</a>
+      <a href="output/library/">Library</a>
       <a href="books/">Books</a>
       <a href="resources/">Resources</a>
       <a href="about/">About</a>
@@ -382,7 +454,6 @@ blockquote.testimonial p { font-size: 1rem; font-style: italic; color: var(--tex
 </footer>
 
 <script>
-// ── Scroll reveal ──────────────────────────────────────────────────
 const reveals = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver(
   entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } }),
@@ -390,24 +461,14 @@ const revealObserver = new IntersectionObserver(
 );
 reveals.forEach(el => revealObserver.observe(el));
 
-// ── Auto-load latest from registry.json ───────────────────────────
 async function loadLatest() {
   const list = document.getElementById('latest-list');
   try {
     const res = await fetch('registry.json');
     if (!res.ok) throw new Error('registry not found');
     const entries = await res.json();
-
-    // Sort newest first, show max 4
-    const sorted = entries
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 4);
-
-    if (sorted.length === 0) {
-      list.innerHTML = '<p class="loading-state">No entries yet.</p>';
-      return;
-    }
-
+    const sorted = entries.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4);
+    if (sorted.length === 0) { list.innerHTML = '<p class="loading-state">No entries yet.</p>'; return; }
     list.innerHTML = sorted.map(entry => `
       <div class="article-item reveal">
         <div class="article-content">
@@ -418,8 +479,6 @@ async function loadLatest() {
         <a href="${entry.file}" class="article-link">Read →</a>
       </div>
     `).join('');
-
-    // Observe newly added elements
     list.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   } catch (e) {
     list.innerHTML = '<p class="loading-state">Content coming soon.</p>';
