@@ -36,13 +36,13 @@ h2.section-title { font-family: var(--font-display); font-size: clamp(1.3rem, 3v
 
 /* NAV */
 .site-nav { background: var(--navy); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.06); }
-.site-nav .container { max-width: 780px; display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; gap: 1rem; }
+.site-nav .container { display: flex; align-items: center; justify-content: space-between; padding-block: 1rem; gap: 1rem; }
 .site-nav .brand { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
 .nav-links { display: flex; list-style: none; gap: 2rem; }
 .nav-links a { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); transition: color 0.2s; }
-.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links a:hover { color: var(--gold-light); }
 .nav-links .nav-cta { color: var(--gold); }
-.nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.2rem; cursor: pointer; }
+.nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.2rem; cursor: pointer; padding: 0.25rem; }
 
 /* PAGE HERO */
 .page-hero { background: var(--navy); background-image: radial-gradient(ellipse at 30% 60%, rgba(184,149,42,0.08) 0%, transparent 60%), linear-gradient(170deg, #1A2744 0%, #0F1A33 100%); padding-block: 4rem 3.5rem; text-align: center; }
