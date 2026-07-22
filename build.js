@@ -8,23 +8,25 @@ const fs   = require('fs');
 const path = require('path');
 
 // ── 1. THEME CONFIG ──────────────────────────────────────────
-//  This is the only place you need to touch to add/remove/rename
-//  a theme. The folder must match the slug exactly.
+//  Add/remove a theme by editing this array only.
+//  slug must match the folder name inside content/
 // ─────────────────────────────────────────────────────────────
 const THEMES = [
-  { slug: '01-creation-and-garden',       title: 'Creation & the Garden',            description: 'God creates all things and dwells with humanity in Eden. The pattern everything else strains toward.' },
-  { slug: '02-the-fall',                  title: 'The Fall',                          description: 'Sin enters. The curse falls. And in the same breath, the first promise of a Redeemer is spoken.' },
-  { slug: '03-the-flood',                 title: 'The Flood',                         description: 'God judges a broken world — and through the wreckage, preserves a remnant by grace.' },
-  { slug: '04-promise-and-patriarchs',    title: 'The Promise & the Patriarchs',      description: 'From Abraham to Joseph, God binds Himself to a people and a line — against every odd.' },
-  { slug: '05-the-law',                   title: 'The Law',                           description: 'At Sinai, God reveals His holiness and calls a nation to reflect it. The Law shows the need — and the way.' },
-  { slug: '06-the-kingdom',               title: 'The Kingdom',                       description: 'Israel receives kings. Every one of them falls short. The longing for the true King grows.' },
-  { slug: '07-exile-and-prophets',        title: 'Exile & the Prophets',              description: 'God disciplines His people — and through the prophets, speaks of a restoration beyond anything they can imagine.' },
-  { slug: '08-psalms-and-wisdom',         title: 'Psalms & Wisdom',                   description: 'Poetry, lament, praise, and hard questions — the full range of the human heart laid bare before God.' },
-  { slug: '09-messiah-cross-resurrection',title: 'The Messiah, Cross & Resurrection', description: 'Christ enters history. He lives what we could not, dies in our place, and rises — the hinge of all Scripture.' },
-  { slug: '10-the-church',                title: 'The Church',                        description: 'The Spirit comes. A people are sent. The Gospel Story now moves outward to every tongue and nation.' },
-  { slug: '11-new-creation',              title: 'New Creation',                      description: 'The story does not end in ashes. God restores all things — and the garden becomes a city filled with His glory.' },
-  { slug: '12-further-readings',          title: 'Further Readings',                  description: 'Recommended resources, study guides, and materials to go deeper into the Gospel Story.', isMore: true },
+  { slug: '01-creation-and-garden',        title: 'Creation & the Garden',            description: 'God creates all things and dwells with humanity in Eden. The pattern everything else strains toward.' },
+  { slug: '02-the-fall',                   title: 'The Fall',                          description: 'Sin enters. The curse falls. And in the same breath, the first promise of a Redeemer is spoken.' },
+  { slug: '03-the-flood',                  title: 'The Flood',                         description: 'God judges a broken world — and through the wreckage, preserves a remnant by grace.' },
+  { slug: '04-promise-and-patriarchs',     title: 'The Promise & the Patriarchs',      description: 'From Abraham to Joseph, God binds Himself to a people and a line — against every odd.' },
+  { slug: '05-the-law',                    title: 'The Law',                           description: 'At Sinai, God reveals His holiness and calls a nation to reflect it. The Law shows the need — and the way.' },
+  { slug: '06-the-kingdom',                title: 'The Kingdom',                       description: 'Israel receives kings. Every one of them falls short. The longing for the true King grows.' },
+  { slug: '07-exile-and-prophets',         title: 'Exile & the Prophets',              description: 'God disciplines His people — and through the prophets, speaks of a restoration beyond anything they can imagine.' },
+  { slug: '08-psalms-and-wisdom',          title: 'Psalms & Wisdom',                   description: 'Poetry, lament, praise, and hard questions — the full range of the human heart laid bare before God.' },
+  { slug: '09-messiah-cross-resurrection', title: 'The Messiah, Cross & Resurrection', description: 'Christ enters history. He lives what we could not, dies in our place, and rises — the hinge of all Scripture.' },
+  { slug: '10-the-church',                 title: 'The Church',                        description: 'The Spirit comes. A people are sent. The Gospel Story now moves outward to every tongue and nation.' },
+  { slug: '11-new-creation',               title: 'New Creation',                      description: 'The story does not end in ashes. God restores all things — and the garden becomes a city filled with His glory.' },
 ];
+
+// Further Readings is handled separately below
+const FURTHER_SLUG = '12-further-readings';
 
 const CONTENT_DIR = path.join(__dirname, 'content');
 const OUTPUT_DIR  = path.join(__dirname, 'output');
@@ -36,7 +38,6 @@ function ensureDir(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 }
 
-// Minimal frontmatter parser — no dependencies needed
 function parseFrontmatter(raw) {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   if (!match) return { meta: {}, body: raw };
@@ -48,8 +49,6 @@ function parseFrontmatter(raw) {
   return { meta, body: match[2] };
 }
 
-// Minimal Markdown → HTML converter (no dependencies)
-// Handles: headings, bold, italic, paragraphs, ul lists, blockquotes, hr
 function mdToHtml(md) {
   const lines = md.split('\n');
   let html = '';
@@ -59,7 +58,6 @@ function mdToHtml(md) {
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
 
-    // Blockquote
     if (line.startsWith('> ')) {
       if (!inBlockquote) { html += '<blockquote>'; inBlockquote = true; }
       html += '<p>' + inline(line.slice(2)) + '</p>';
@@ -68,7 +66,6 @@ function mdToHtml(md) {
       html += '</blockquote>'; inBlockquote = false;
     }
 
-    // Headings
     const h = line.match(/^(#{1,4})\s+(.*)/);
     if (h) {
       if (inList) { html += '</ul>'; inList = false; }
@@ -77,13 +74,8 @@ function mdToHtml(md) {
       continue;
     }
 
-    // HR
-    if (/^---+$/.test(line.trim())) {
-      html += '<hr>';
-      continue;
-    }
+    if (/^---+$/.test(line.trim())) { html += '<hr>'; continue; }
 
-    // List item
     if (line.match(/^[-*]\s+/)) {
       if (!inList) { html += '<ul>'; inList = true; }
       html += `<li>${inline(line.replace(/^[-*]\s+/, ''))}</li>`;
@@ -92,7 +84,6 @@ function mdToHtml(md) {
       html += '</ul>'; inList = false;
     }
 
-    // Paragraph
     if (line.trim() === '') continue;
     html += `<p>${inline(line)}</p>`;
   }
@@ -110,23 +101,26 @@ function inline(text) {
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>');
 }
 
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+
 // ── 3. SHARED HTML PARTS ──────────────────────────────────────
 
-const CSS = `
-<style>
+const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">`;
+
+const CSS = `<style>
 :root {
-  --navy:       #1A2744;
-  --navy-light: #253560;
-  --gold:       #B8952A;
-  --gold-light: #D4AE4E;
-  --parchment:  #F7F0E2;
-  --cream:      #FDFAF4;
-  --slate:      #7A8BA0;
-  --text:       #2C2C2C;
-  --text-muted: #5A5A5A;
-  --rule:       #D9CEB5;
+  --navy: #1A2744; --navy-light: #253560; --gold: #B8952A; --gold-light: #D4AE4E;
+  --parchment: #F7F0E2; --cream: #FDFAF4; --slate: #7A8BA0;
+  --text: #2C2C2C; --text-muted: #5A5A5A; --rule: #D9CEB5;
   --font-display: 'Cinzel', Georgia, serif;
-  --font-body:    'EB Garamond', Georgia, serif;
+  --font-body: 'EB Garamond', Georgia, serif;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -143,6 +137,8 @@ a { color: inherit; text-decoration: none; }
 .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
 .btn-navy { background: var(--navy); color: #fff; }
 .btn-navy:hover { background: var(--navy-light); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+.btn-ghost:hover { background: var(--gold); color: var(--navy); }
 
 /* NAV */
 .site-nav { background: var(--navy); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -151,6 +147,7 @@ a { color: inherit; text-decoration: none; }
 .nav-links { display: flex; list-style: none; gap: 2rem; }
 .nav-links a { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.65); transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links .nav-cta { color: var(--gold); }
 .nav-toggle { display: none; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 1.2rem; cursor: pointer; }
 
 /* PAGE HERO */
@@ -181,12 +178,14 @@ a { color: inherit; text-decoration: none; }
 .card-more .card-link { color: rgba(255,255,255,0.5); }
 .card-more:hover .card-link { color: var(--gold-light); }
 
-/* ARTICLE LIST (theme index page) */
+/* THEME HERO */
 .theme-hero { background: var(--navy); background-image: linear-gradient(170deg, #1A2744 0%, #0F1A33 100%); padding-block: 3.5rem 3rem; }
 .theme-hero .back { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: inline-block; margin-bottom: 1.25rem; transition: color 0.2s; }
 .theme-hero .back:hover { color: var(--gold-light); }
 .theme-hero h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700; color: #fff; letter-spacing: 0.05em; line-height: 1.2; margin-bottom: 0.6rem; }
 .theme-hero p { font-size: 0.98rem; color: rgba(255,255,255,0.5); font-style: italic; max-width: 540px; }
+
+/* ARTICLE LIST */
 .article-list { padding-block: 3.5rem 5rem; }
 .article-item { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1.5rem; padding-block: 1.5rem; border-bottom: 1px solid var(--rule); transition: background 0.15s; }
 .article-item:first-child { border-top: 1px solid var(--rule); }
@@ -195,7 +194,17 @@ a { color: inherit; text-decoration: none; }
 .article-item p { font-size: 0.88rem; color: var(--text-muted); font-style: italic; line-height: 1.6; }
 .article-arrow { font-family: var(--font-display); font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
 
-/* ARTICLE PAGE */
+/* FURTHER READINGS — category + date badge */
+.article-meta { font-family: var(--font-display); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--slate); margin-bottom: 0.35rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+.meta-category { background: var(--navy); color: var(--gold-light); padding: 0.2rem 0.6rem; font-size: 0.48rem; letter-spacing: 0.15em; }
+.meta-date { color: var(--slate); }
+
+/* FILTER BAR (Further Readings) */
+.filter-bar { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.filter-btn { font-family: var(--font-display); font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.45rem 1rem; border: 1px solid var(--rule); background: #fff; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+.filter-btn:hover, .filter-btn.active { border-color: var(--gold); color: var(--navy); background: var(--parchment); }
+
+/* ARTICLE BODY */
 .article-body { padding-block: 3.5rem 5rem; }
 .article-body h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--navy); letter-spacing: 0.04em; line-height: 1.3; margin-bottom: 0.5rem; }
 .article-body h2 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); letter-spacing: 0.04em; margin-top: 2.5rem; margin-bottom: 0.75rem; }
@@ -208,6 +217,7 @@ a { color: inherit; text-decoration: none; }
 .article-body strong { font-weight: 600; color: var(--navy); }
 .article-body em { font-style: italic; }
 .article-body hr { border: none; border-top: 1px solid var(--rule); margin-block: 2rem; }
+.article-dateline { font-family: var(--font-display); font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 .article-nav { display: flex; justify-content: space-between; gap: 1rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); margin-top: 3rem; }
 .article-nav a { font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); transition: color 0.2s; }
 .article-nav a:hover { color: var(--gold-light); }
@@ -248,17 +258,12 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 </style>`;
 
-const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">`;
-
-function nav(activeSlug = '') {
+function nav(activeLabel = '') {
   const links = [
-    { href: '../../',           label: 'Home'    },
-    { href: '../../library/',   label: 'Library' },
-    { href: '../../books/',     label: 'Books'   },
-    { href: '../../resources/', label: 'Resources' },
-    { href: '../../about/',     label: 'About'   },
+    { href: '../../',         label: 'Home'    },
+    { href: '../../library/', label: 'Library' },
+    { href: '../../books/',   label: 'Books'   },
+    { href: '../../about/',   label: 'About'   },
   ];
   return `
 <nav class="site-nav" aria-label="Site navigation">
@@ -266,7 +271,8 @@ function nav(activeSlug = '') {
     <a href="../../" class="brand">The Gospel Story</a>
     <button class="nav-toggle" aria-label="Toggle navigation" onclick="this.nextElementSibling.classList.toggle('open')">☰</button>
     <ul class="nav-links">
-      ${links.map(l => `<li><a href="${l.href}"${l.label.toLowerCase() === activeSlug ? ' class="active"' : ''}>${l.label}</a></li>`).join('\n      ')}
+      ${links.map(l => `<li><a href="${l.href}"${l.label === activeLabel ? ' class="active"' : ''}>${l.label}</a></li>`).join('\n      ')}
+      <li><a href="https://www.paypal.com/ncp/payment/J6MDREWJPG4PY" target="_blank" rel="noopener" class="nav-cta">Support</a></li>
     </ul>
   </div>
 </nav>`;
@@ -280,12 +286,11 @@ function footer() {
       <span class="brand">The Gospel Story</span>
       <p>Helping believers and seekers<br>understand Scripture as one<br>unified story centered on Christ.</p>
     </div>
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="../../">Home</a>
+    <nav class="footer-nav">
       <a href="../../library/">Library</a>
       <a href="../../books/">Books</a>
-      <a href="../../resources/">Resources</a>
       <a href="../../about/">About</a>
+      <a href="https://www.paypal.com/ncp/payment/J6MDREWJPG4PY" target="_blank" rel="noopener">Support</a>
     </nav>
     <div class="footer-legal">
       <nav>
@@ -321,8 +326,13 @@ function supportBand() {
 // ── 4. BUILD LIBRARY INDEX ────────────────────────────────────
 
 function buildLibraryIndex() {
-  const cards = THEMES.map((theme, i) => {
-    const num = theme.isMore ? 'Further' : String(i + 1).padStart(2, '0');
+  const allThemes = [
+    ...THEMES,
+    { slug: FURTHER_SLUG, title: 'Further Readings', description: 'Recommended resources, study guides, and materials to go deeper into the Gospel Story.', isMore: true },
+  ];
+
+  const cards = allThemes.map((theme, i) => {
+    const num       = theme.isMore ? 'Further' : String(i + 1).padStart(2, '0');
     const cardClass = theme.isMore ? 'theme-card card-more' : 'theme-card';
     const linkText  = theme.isMore ? 'Explore →' : 'Read →';
     return `
@@ -341,13 +351,12 @@ function buildLibraryIndex() {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Library — The Gospel Story</title>
-<meta name="description" content="Twelve threads woven through all 66 books of Scripture — follow any one and find Christ at the center.">
+<meta name="description" content="Twelve threads woven through all 66 books of Scripture.">
 ${FONTS}
 ${CSS}
 </head>
 <body>
-${nav('library')}
-
+${nav('Library')}
 <header class="page-hero">
   <div>
     <span class="eyebrow">Scripture · Christ · One Story</span>
@@ -355,7 +364,6 @@ ${nav('library')}
     <p>Twelve threads woven through all 66 books — follow any one and find Christ at the center.</p>
   </div>
 </header>
-
 <main class="library-section container--wide">
   <div class="library-intro">
     <h2>Choose a Theme</h2>
@@ -364,7 +372,6 @@ ${nav('library')}
   <div class="theme-grid">${cards}
   </div>
 </main>
-
 ${supportBand()}
 ${footer()}
 </body>
@@ -377,22 +384,20 @@ ${footer()}
 }
 
 
-// ── 5. BUILD THEME INDEX (article list) ──────────────────────
+// ── 5. BUILD REGULAR THEME INDEX ─────────────────────────────
 
 function buildThemeIndex(theme, articles) {
-  const articleItems = articles.map(article => `
-        <a href="./${article.slug}/" class="article-item reveal">
-          <div>
-            <h3>${article.meta.title || article.slug}</h3>
-            ${article.meta.description ? `<p>${article.meta.description}</p>` : ''}
-          </div>
-          <span class="article-arrow">Read →</span>
-        </a>`).join('');
+  const items = articles.map(a => `
+    <a href="./${a.slug}/" class="article-item reveal">
+      <div>
+        <h3>${a.meta.title || a.slug}</h3>
+        ${a.meta.description ? `<p>${a.meta.description}</p>` : ''}
+      </div>
+      <span class="article-arrow">Read →</span>
+    </a>`).join('');
 
   const empty = articles.length === 0
-    ? `<p style="color:var(--text-muted); font-style:italic; padding-top:2rem;">
-        Articles coming soon. Check back or <a href="../../about/" style="color:var(--gold);">follow the work</a>.
-       </p>`
+    ? `<p style="color:var(--text-muted);font-style:italic;padding-top:2rem;">Articles coming soon.</p>`
     : '';
 
   const html = `<!DOCTYPE html>
@@ -406,8 +411,7 @@ ${FONTS}
 ${CSS}
 </head>
 <body>
-${nav('library')}
-
+${nav('Library')}
 <header class="theme-hero">
   <div class="container">
     <a href="../../library/" class="back">← The Library</a>
@@ -415,11 +419,9 @@ ${nav('library')}
     <p>${theme.description}</p>
   </div>
 </header>
-
 <main class="article-list container">
-  ${articleItems || empty}
+  ${items || empty}
 </main>
-
 ${supportBand()}
 ${footer()}
 </body>
@@ -432,7 +434,7 @@ ${footer()}
 }
 
 
-// ── 6. BUILD INDIVIDUAL ARTICLE ───────────────────────────────
+// ── 6. BUILD REGULAR ARTICLE ──────────────────────────────────
 
 function buildArticle(theme, article, prev, next) {
   const html = `<!DOCTYPE html>
@@ -446,24 +448,20 @@ ${FONTS}
 ${CSS}
 </head>
 <body>
-${nav('library')}
-
+${nav('Library')}
 <header class="theme-hero">
   <div class="container">
     <a href="../" class="back">← ${theme.title}</a>
   </div>
 </header>
-
 <main class="article-body container">
   ${mdToHtml(article.body)}
-
-  <nav class="article-nav" aria-label="Article navigation">
+  <nav class="article-nav">
     <span>${prev ? `<a href="../${prev.slug}/">← ${prev.meta.title || prev.slug}</a>` : ''}</span>
     <a href="../">All Articles</a>
     <span>${next ? `<a href="../${next.slug}/">${next.meta.title || next.slug} →</a>` : ''}</span>
   </nav>
 </main>
-
 ${supportBand()}
 ${footer()}
 </body>
@@ -476,7 +474,161 @@ ${footer()}
 }
 
 
-// ── 7. MAIN ───────────────────────────────────────────────────
+// ── 7. BUILD FURTHER READINGS ─────────────────────────────────
+//
+//  .md frontmatter for Further Readings:
+//
+//  ---
+//  title: Your Title Here
+//  date: 2026-07-22
+//  category: Sermon          ← Sermon | Article | Devotion | Study | Other
+//  description: One line summary shown in the list.
+//  ---
+//
+//  Drop any .md file into content/12-further-readings/ and run build.js.
+// ─────────────────────────────────────────────────────────────
+
+function buildFurtherReadings(articles) {
+  // Collect unique categories for the filter bar
+  const categories = ['All', ...new Set(articles.map(a => a.meta.category || 'Other'))];
+
+  // Build filter buttons (JS-powered, no reload)
+  const filterBtns = categories.map((c, i) =>
+    `<button class="filter-btn${i === 0 ? ' active' : ''}" data-cat="${c}">${c}</button>`
+  ).join('\n        ');
+
+  // Build article list items
+  const items = articles.map(a => {
+    const cat  = a.meta.category || 'Other';
+    const date = formatDate(a.meta.date);
+    return `
+    <a href="./${a.slug}/" class="article-item reveal" data-cat="${cat}">
+      <div>
+        <div class="article-meta">
+          <span class="meta-category">${cat}</span>
+          ${date ? `<span class="meta-date">${date}</span>` : ''}
+        </div>
+        <h3>${a.meta.title || a.slug}</h3>
+        ${a.meta.description ? `<p>${a.meta.description}</p>` : ''}
+      </div>
+      <span class="article-arrow">Read →</span>
+    </a>`;
+  }).join('');
+
+  const empty = articles.length === 0
+    ? `<p style="color:var(--text-muted);font-style:italic;padding-top:2rem;">Content coming soon.</p>`
+    : '';
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Further Readings — The Gospel Story</title>
+<meta name="description" content="Sermons, articles, devotions and study materials from The Gospel Story.">
+${FONTS}
+${CSS}
+</head>
+<body>
+${nav('Library')}
+<header class="theme-hero">
+  <div class="container">
+    <a href="../../library/" class="back">← The Library</a>
+    <h1>Further Readings</h1>
+    <p>Sermons, articles, devotions, and studies — sorted by most recent.</p>
+  </div>
+</header>
+<main class="article-list container">
+  <div class="filter-bar" id="filter-bar">
+    ${filterBtns}
+  </div>
+  ${items || empty}
+</main>
+${supportBand()}
+${footer()}
+<script>
+  const btns  = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.article-item[data-cat]');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      items.forEach(item => {
+        item.style.display = (cat === 'All' || item.dataset.cat === cat) ? '' : 'none';
+      });
+    });
+  });
+</script>
+</body>
+</html>`;
+
+  const outDir = path.join(OUTPUT_DIR, 'library', FURTHER_SLUG);
+  ensureDir(outDir);
+  fs.writeFileSync(path.join(outDir, 'index.html'), html);
+  console.log(`✓  library/${FURTHER_SLUG}/index.html  (${articles.length} item${articles.length !== 1 ? 's' : ''})`);
+
+  // Write index.json — used by homepage to show latest 4
+  const indexData = articles.map(a => ({
+    slug:        a.slug,
+    title:       a.meta.title || a.slug,
+    date:        a.meta.date  || '',
+    category:    a.meta.category || 'Other',
+    description: a.meta.description || '',
+  }));
+  fs.writeFileSync(path.join(outDir, 'index.json'), JSON.stringify(indexData, null, 2));
+  console.log(`   ↳  index.json written (${indexData.length} entries)`);
+}
+
+
+// ── 8. BUILD FURTHER READINGS ARTICLE ────────────────────────
+
+function buildFurtherArticle(article, prev, next) {
+  const cat  = article.meta.category || 'Other';
+  const date = formatDate(article.meta.date);
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${article.meta.title || article.slug} — The Gospel Story</title>
+${article.meta.description ? `<meta name="description" content="${article.meta.description}">` : ''}
+${FONTS}
+${CSS}
+</head>
+<body>
+${nav('Library')}
+<header class="theme-hero">
+  <div class="container">
+    <a href="../" class="back">← Further Readings</a>
+  </div>
+</header>
+<main class="article-body container">
+  <div class="article-dateline">
+    <span class="meta-category">${cat}</span>
+    ${date ? `<span class="meta-date">${date}</span>` : ''}
+  </div>
+  ${mdToHtml(article.body)}
+  <nav class="article-nav">
+    <span>${prev ? `<a href="../${prev.slug}/">← ${prev.meta.title || prev.slug}</a>` : ''}</span>
+    <a href="../">All Readings</a>
+    <span>${next ? `<a href="../${next.slug}/">${next.meta.title || next.slug} →</a>` : ''}</span>
+  </nav>
+</main>
+${supportBand()}
+${footer()}
+</body>
+</html>`;
+
+  const outDir = path.join(OUTPUT_DIR, 'library', FURTHER_SLUG, article.slug);
+  ensureDir(outDir);
+  fs.writeFileSync(path.join(outDir, 'index.html'), html);
+  console.log(`   ↳  ${article.slug}/index.html`);
+}
+
+
+// ── 9. MAIN ───────────────────────────────────────────────────
 
 function build() {
   console.log('\nBuilding The Gospel Story Library...\n');
@@ -484,30 +636,46 @@ function build() {
 
   buildLibraryIndex();
 
+  // Regular themes
   for (const theme of THEMES) {
     const themeDir = path.join(CONTENT_DIR, theme.slug);
+    if (!fs.existsSync(themeDir)) { buildThemeIndex(theme, []); continue; }
 
-    if (!fs.existsSync(themeDir)) {
-      buildThemeIndex(theme, []);
-      continue;
-    }
-
-    // Load and sort all .md files in this theme folder
     const files = fs.readdirSync(themeDir)
       .filter(f => f.endsWith('.md'))
       .map(f => {
-        const raw  = fs.readFileSync(path.join(themeDir, f), 'utf8');
+        const raw = fs.readFileSync(path.join(themeDir, f), 'utf8');
         const { meta, body } = parseFrontmatter(raw);
-        return { slug: f.replace(/\.md$/, ''), meta, body, filename: f };
+        return { slug: f.replace(/\.md$/, ''), meta, body };
       })
       .sort((a, b) => (Number(a.meta.order) || 999) - (Number(b.meta.order) || 999));
 
     buildThemeIndex(theme, files);
-
-    files.forEach((article, i) => {
-      buildArticle(theme, article, files[i - 1] || null, files[i + 1] || null);
-    });
+    files.forEach((article, i) => buildArticle(theme, article, files[i - 1] || null, files[i + 1] || null));
   }
+
+  // Further Readings — sorted by date descending
+  const furtherDir = path.join(CONTENT_DIR, FURTHER_SLUG);
+  const furtherFiles = fs.existsSync(furtherDir)
+    ? fs.readdirSync(furtherDir)
+        .filter(f => f.endsWith('.md'))
+        .map(f => {
+          const raw = fs.readFileSync(path.join(furtherDir, f), 'utf8');
+          const { meta, body } = parseFrontmatter(raw);
+          return { slug: f.replace(/\.md$/, ''), meta, body };
+        })
+        .sort((a, b) => {
+          if (!a.meta.date && !b.meta.date) return 0;
+          if (!a.meta.date) return 1;
+          if (!b.meta.date) return -1;
+          return new Date(b.meta.date) - new Date(a.meta.date);
+        })
+    : [];
+
+  buildFurtherReadings(furtherFiles);
+  furtherFiles.forEach((article, i) =>
+    buildFurtherArticle(article, furtherFiles[i - 1] || null, furtherFiles[i + 1] || null)
+  );
 
   console.log('\n✓  Build complete → output/\n');
 }
